@@ -18,6 +18,10 @@ const JobList = () => {
         fetchJobs();
     }, []) 
 
+    if (!jobs) {
+        return <h1>No Jobs to Show.</h1>
+    }
+    
     return (
         <>
             {jobs.map((job) => (
