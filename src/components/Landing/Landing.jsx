@@ -5,19 +5,7 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Landing = () => {
     const { user } = useContext(UserContext);
-    // const [landing, setLanding] = useState([]);
-    // console.log(`on Landing: ${user}`)
-
-    // const fetchLanding = async () => {
-    //     try {
-    //         const landing = await getLanding();
-    //         setLanding(landing);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-
-    // fetchLanding();
+    console.log(`user on landing page: ${user}`)
 
     return (
         <>

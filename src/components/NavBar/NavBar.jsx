@@ -6,7 +6,6 @@ import { UserContext } from '../../contexts/UserContext';
 // component
 const NavBar = () => {
     const { user, setUser } = useContext(UserContext)
-    console.log(`on NavBar: ${user}`)
 
 // handler functions
     const handleLogOut = () => {

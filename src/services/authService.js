@@ -1,24 +1,18 @@
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}token/`;
+import { ACCESS_TOKEN, REFRESH_TOKEN, USERNAME } from '../constants';
+import api from '../services/apiService';
+
+const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/token/`;
 
 export const login = async (formData) => {
-    console.log(formData)
-    console.log(BASE_URL)
     try {
-        const res = await fetch(`${BASE_URL}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        });
+        const res = await api.post(BASE_URL, formData);
 
-        if (!res.ok) throw new Error('Login failed');
+        localStorage.setItem('access', res.data.access);
+        localStorage.setItem('refresh', res.data.refresh);
+        localStorage.setItem('user', JSON.stringify(res.data.user));
 
-        const data = await res.json();
-        console.log(data)
-        localStorage.setItem('token', data.access);
-        console.log('Login Successful')
-        // return JSON.parse(atob(data.token.split('.')[1])).payload
+        console.log("Login successful:", res.data.user);
+        return res.data.user;
     } catch (err) {
         console.log(err);
         throw new Error(err);
