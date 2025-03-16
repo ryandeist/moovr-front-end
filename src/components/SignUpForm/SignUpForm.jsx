@@ -41,9 +41,8 @@ const SignUpForm = () => {
     const isSignUpValid = () => {
         return !(
             username &&
-            username.length >= 5 &&
             password &&
-            password.length >= 6 &&
+            password.length >= 7 &&
             password === passwordConfirm
         )
     }
@@ -59,6 +58,7 @@ const SignUpForm = () => {
                         type="text"
                         name="username"
                         id="username"
+                                                placeholder="Letters, Numbers, and @,_,.,- only"
                         value={username}
                         onChange={handleChange}
                         required
@@ -70,6 +70,7 @@ const SignUpForm = () => {
                         type="password"
                         name="password"
                         id="password"
+                        placeholder="Must be > 6 characters"
                         value={password}
                         onChange={handleChange}
                         required
@@ -81,7 +82,7 @@ const SignUpForm = () => {
                         type="password"
                         id="confirm"
                         name="passwordConfirm"
-                        placeholder="Must be at least 6 characters"
+                        placeholder="Must match password"
                         value={passwordConfirm}
                         onChange={handleChange}
                         required

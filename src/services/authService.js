@@ -14,8 +14,8 @@ export const logIn = async (formData) => {
         console.log("Login successful:", res.data.user);
         return res.data.user;
     } catch (err) {
-        console.log(err);
-        throw new Error(err);
+        console.log("Signup failed:", err);
+        throw new Error("Invalid Credentials.");
     }
 };
 
@@ -34,6 +34,6 @@ export const signUp = async (formData) => {
         return res.data.user;
     } catch (err) {
         console.log("Signup failed:", err)
-        throw new Error(err);
+        throw new Error('Sign Up Failed');
     }
 }
