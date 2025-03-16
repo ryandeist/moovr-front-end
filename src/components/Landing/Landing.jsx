@@ -5,7 +5,6 @@ import { UserContext } from '../../contexts/UserContext';
 
 const Landing = () => {
     const { user } = useContext(UserContext);
-    console.log(`user on landing page: ${user}`)
 
     return (
         <>
