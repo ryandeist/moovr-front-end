@@ -2,7 +2,6 @@ import './App.css';
 import JobList from './components/JobList/JobList';
 import Landing from './components/Landing/Landing';
 import NavBar from './components/NavBar/NavBar';
-import LoginForm from './components/LoginForm/LoginForm';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import { Routes, Route, Navigate } from 'react-router';

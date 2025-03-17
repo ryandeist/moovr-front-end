@@ -18,7 +18,7 @@ const JobList = () => {
         fetchJobs();
     }, []) 
 
-    if (!jobs) {
+    if (jobs.length === 0) {
         return <h1>No Jobs to Show.</h1>
     }
     

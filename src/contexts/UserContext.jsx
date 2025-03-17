@@ -6,11 +6,11 @@ const UserContext = createContext()
 
 // utility functions
 const getUserFromToken = () => {
-    const username = localStorage.getItem('username')
+    const token = localStorage.getItem('user')
 
-    if (!username) return null
+    if (!token) return null
 
-    return username
+    return JSON.parse(token)
 }
 
 // context
