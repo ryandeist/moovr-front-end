@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getJobs } from '../../services/jobService.js';
+import { Link } from 'react-router';
 
 // component
 const JobList = () => {
@@ -16,17 +17,23 @@ const JobList = () => {
             }
         }
         fetchJobs();
-    }, [jobs]) 
+    }, [jobs])
 
     if (jobs.length === 0) {
         return <h1>No Jobs to Show.</h1>
     }
-    
+
     return (
         <>
             {jobs.map((job) => (
                 <div key={job.id}>
-                    {job.name}
+                    <div>
+                        <h2>{job.name}</h2>
+                        <p>{job.date}</p>
+                    </div>
+                    <div>
+                        <Link to={`/jobs/${job.id}`}>Job Details</Link>
+                    </div>
                 </div>
             ))}
         </>
