@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-// import { getLanding } from '../../services/landingService';
 import { UserContext } from '../../contexts/UserContext';
 import LoginForm from '../LoginForm/LoginForm';
 
