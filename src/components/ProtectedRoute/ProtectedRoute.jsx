@@ -1,18 +1,20 @@
+// imports
 import { Navigate } from 'react-router';
 import { jwtDecode } from 'jwt-decode';
 import api from '../../services/apiService';
 import { useState, useEffect } from 'react';
 
+// this component checks and passes token authorization to protected routes.
 const ProtectedRoute = ({ children }) => {
     const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {
         try {
-            needTokenRefresh()
+            needTokenRefresh();
         } catch {
-            setIsAuthorized(false)
-        }
-    }, [])
+            setIsAuthorized(false);
+        };
+    }, []);
 
     const refreshToken = async () => {
         const refreshToken = localStorage.getItem('refresh');
@@ -38,7 +40,7 @@ const ProtectedRoute = ({ children }) => {
         if (!token) {
             setIsAuthorized(false);
             return;
-        }
+        };
 
         const decodedToken = jwtDecode(token);
         const tokenExpiration = decodedToken.exp;
@@ -56,6 +58,6 @@ const ProtectedRoute = ({ children }) => {
     };
 
     return isAuthorized ? children : <Navigate to='/' />
-}
+};
 
 export default ProtectedRoute;

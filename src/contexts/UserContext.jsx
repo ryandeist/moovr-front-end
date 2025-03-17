@@ -27,4 +27,4 @@ const UserProvider = ({ children }) => {
 };
 
 // export
-export { UserProvider, UserContext }
+export { UserProvider, UserContext };

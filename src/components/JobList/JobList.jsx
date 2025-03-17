@@ -1,3 +1,4 @@
+// imports
 import { useState, useEffect } from 'react';
 import { getJobs } from '../../services/jobService.js';
 import { Link } from 'react-router';
@@ -7,6 +8,7 @@ const JobList = () => {
     // state
     const [jobs, setJobs] = useState([]);
 
+    // fetch user job list
     useEffect(() => {
         const fetchJobs = async () => {
             try {
@@ -17,12 +19,14 @@ const JobList = () => {
             }
         }
         fetchJobs();
-    }, [jobs])
+    }, []);
 
+    // to display if no jobs.
     if (jobs.length === 0) {
         return <h1>No Jobs to Show.</h1>
-    }
-
+    };
+    
+    //return
     return (
         <>
             {jobs.map((job) => (
@@ -38,6 +42,7 @@ const JobList = () => {
             ))}
         </>
     )
-}
+};
 
+// export
 export default JobList;

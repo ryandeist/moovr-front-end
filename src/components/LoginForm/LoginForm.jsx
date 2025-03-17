@@ -1,34 +1,34 @@
 // imports
-import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router'
-import { UserContext } from '../../contexts/UserContext'
-import { logIn } from '../../services/authService'
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router';
+import { UserContext } from '../../contexts/UserContext';
+import { logIn } from '../../services/authService';
 
 // component
 const LoginForm = () => {
     //hooks
-    const { setUser } = useContext(UserContext)
-    const navigate = useNavigate()
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     // state
-    const [formData, setFormData] = useState({ username: '', password: '' })
-    const [message, setMessage] = useState('')
-    const { username, password } = formData
+    const [formData, setFormData] = useState({ username: '', password: '' });
+    const [message, setMessage] = useState('');
+    const { username, password } = formData;
 
     // handler functions 
     const handleChange = (evt) => {
-        setMessage('')
-        setFormData({ ...formData, [evt.target.name]: evt.target.value })
+        setMessage('');
+        setFormData({ ...formData, [evt.target.name]: evt.target.value });
     }
 
     const handleSubmit = async (evt) => {
-        evt.preventDefault()
+        evt.preventDefault();
         try {
-            const loggedInUser = await logIn(formData)
-            setUser(loggedInUser)
-            navigate('/')
+            const loggedInUser = await logIn(formData);
+            setUser(loggedInUser);
+            navigate('/');
         } catch (err) {
-            setMessage(err.message)
+            setMessage(err.message);
         }
     }
 
@@ -36,8 +36,8 @@ const LoginForm = () => {
         return !(
             username &&
             password
-        )
-    }
+        );
+    };
 
 
     // return
@@ -72,7 +72,7 @@ const LoginForm = () => {
             </form>
         </>
     )
-}
+};
 
 // export
-export default LoginForm
+export default LoginForm;

@@ -1,39 +1,39 @@
 // imports
-import { useState, useContext } from "react"
-import { useNavigate } from "react-router"
-import { UserContext } from "../../contexts/UserContext"
-import { signUp } from "../../services/authService"
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router";
+import { UserContext } from "../../contexts/UserContext";
+import { signUp } from "../../services/authService";
 
 // components
 const SignUpForm = () => {
     // hooks
-    const { setUser } = useContext(UserContext)
-    const navigate = useNavigate()
+    const { setUser } = useContext(UserContext);
+    const navigate = useNavigate();
 
     // state variables
     const [formData, setFormData] = useState({
         username: "",
         password: "",
         passwordConfirm: "",
-    })
-    const [message, setMessage] = useState("")
-    const { username, password, passwordConfirm } = formData
+    });
+    const [message, setMessage] = useState("");
+    const { username, password, passwordConfirm } = formData;
 
     // handler functions
     const handleChange = (evt) => {
-        setMessage("")
-        setFormData({ ...formData, [evt.target.name]: evt.target.value })
+        setMessage("");
+        setFormData({ ...formData, [evt.target.name]: evt.target.value });
     }
 
     const handleSubmit = async (evt) => {
-        evt.preventDefault()
+        evt.preventDefault();
 
         try {
-            const newUser = await signUp(formData)
-            setUser(newUser)
-            navigate("/")
+            const newUser = await signUp(formData);
+            setUser(newUser);
+            navigate("/");
         } catch (err) {
-            setMessage(err.message)
+            setMessage(err.message);
         }
     }
 
@@ -44,8 +44,8 @@ const SignUpForm = () => {
             password &&
             password.length >= 7 &&
             password === passwordConfirm
-        )
-    }
+        );
+    };
 
     // return
     return (
@@ -93,6 +93,7 @@ const SignUpForm = () => {
             </form>
         </>
     )
-}
+};
 
+// exports
 export default SignUpForm

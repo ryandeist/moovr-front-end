@@ -1,18 +1,21 @@
-import api from '../services/apiService'
-
-const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/jobs/`;
+import api from '../services/apiService';
 
 export const getJobs = async () => {
     try {
-        const token = localStorage.getItem('access');
-        const res = await api.get(BASE_URL, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const res = await api.get(`/api/jobs/`);
 
-        return res.data
+        return res.data;
     } catch (err) {
-        console.log(`Error fetching jobs:`, err)
-    }
-}
+        console.log(`Error fetching jobs:`, err);
+    };
+};
+
+export const getOneJob = async (jobId) => {
+    try {
+        const res = await api.get(`/api/jobs/${jobId}`);
+
+        return res.data;
+    } catch (err) {
+        console.log(`Error fetching job #${jobId}:`, err);
+    };
+};

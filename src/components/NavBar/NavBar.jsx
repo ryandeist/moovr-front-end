@@ -5,19 +5,21 @@ import { UserContext } from '../../contexts/UserContext';
 
 // component
 const NavBar = () => {
-    const { user, setUser } = useContext(UserContext)
+    // hooks
+    const { user, setUser } = useContext(UserContext);
 
-// handler functions
+    // handler functions
     const handleLogOut = () => {
-        localStorage.clear()
-        setUser(null)
-    }
+        localStorage.clear();
+        setUser(null);
+    };
 
     const clearTokenForSignUp = () => {
-        localStorage.clear()
-        setUser(null)
-    }
-
+        localStorage.clear();
+        setUser(null);
+    };
+    
+    // return
     return (
         <nav>
             <div>
@@ -39,7 +41,7 @@ const NavBar = () => {
             )}
         </nav>
     )
-}
+};
 
 //export
 export default NavBar;
