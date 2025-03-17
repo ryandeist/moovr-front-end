@@ -1,4 +1,3 @@
-import { ACCESS_TOKEN, REFRESH_TOKEN, USERNAME } from '../constants';
 import api from '../services/apiService';
 
 export const logIn = async (formData) => {
@@ -21,7 +20,6 @@ export const logIn = async (formData) => {
 
 export const signUp = async (formData) => {
     const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/user/signup/`;
-    console.log(formData)
 
     try {
         const res = await api.post(BASE_URL, formData);

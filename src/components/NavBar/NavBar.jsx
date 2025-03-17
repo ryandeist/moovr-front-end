@@ -34,7 +34,6 @@ const NavBar = () => {
                 <div>
                     <ul>
                         <li><Link to='/signup' onClick={() => {clearTokenForSignUp()}}>Sign Up</Link></li>
-                        <li><Link to='/login'>Log In</Link></li>
                     </ul>
                 </div>
             )}
