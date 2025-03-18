@@ -1,11 +1,12 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import { createJob } from "../../services/jobservice"; 
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { createJob, editJob, getOneJob } from "../../services/jobservice";
 
 // components
-const JobForm = () => {
+const JobForm = (props) => {
     // hooks
     const navigate = useNavigate();
+    const { jobId } = useParams();
 
     // state variables
     const [formData, setFormData] = useState({
@@ -18,6 +19,22 @@ const JobForm = () => {
     const [message, setMessage] = useState("");
     const { customer_name, start_location, end_location, date } = formData;
 
+    // fetch job if updating
+    useEffect(() => {
+        if (props.isEditingJob && jobId) {
+            const fetchJob = async () => {
+                try {
+                    const job = await getOneJob(jobId);
+                    console.log(job)
+                    setFormData(job);
+                } catch (err) {
+                    console.log(err);
+                }
+            };
+            fetchJob();
+        }
+    }, [jobId, props.isEditingJob])
+
     // handler functions
     const handleChange = (evt) => {
         setMessage("");
@@ -27,12 +44,22 @@ const JobForm = () => {
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
-        try {
-            const newJob = await createJob(formData);
-            navigate("/jobs");
-            return console.log(newJob)
-        } catch (err) {
-            setMessage(err.message);
+        if (props.isEditingJob) {
+            try {
+                const editedJob = await editJob(jobId, formData);
+                navigate(`/jobs/${jobId}`);
+                return console.log(editedJob)
+            } catch (err) {
+                setMessage(err.message);
+            }
+        } else {
+            try {
+                const newJob = await createJob(formData);
+                navigate("/jobs");
+                return console.log(newJob)
+            } catch (err) {
+                setMessage(err.message);
+            }
         }
     }
 
@@ -49,7 +76,7 @@ const JobForm = () => {
     // return
     return (
         <>
-            <h1>Create a Job</h1>
+            <h1>{props.isEditingJob ? 'Edit Job' : 'Create a Job'}</h1>
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="customer_name">Customer Name: </label>
@@ -96,7 +123,7 @@ const JobForm = () => {
                     />
                 </div>
                 <p>{message}</p>
-                <button disabled={isFormValid()}>Sign In</button>
+                <button disabled={isFormValid()}>{props.isEditingJob ? 'Edit Job' : 'Create Job'}</button>
             </form>
         </>
     )

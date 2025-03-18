@@ -30,6 +30,16 @@ export const createJob = async (formData) => {
     };
 };
 
+export const editJob = async (jobId, formData) => {
+    try {
+        const res = await api.put(`/api/jobs/${jobId}/`, formData);
+
+        return res.data;
+    } catch (err) {
+        console.log(`Error editing job.`, err);
+    }
+}
+
 export const deleteJob = async (jobId) => {
     try {
         const res = await api.delete(`/api/jobs/${jobId}/`);

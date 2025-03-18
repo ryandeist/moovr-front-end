@@ -1,6 +1,6 @@
 // imports
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { getOneJob, deleteJob } from "../../services/jobservice";
 
 // component
@@ -52,6 +52,9 @@ const JobDetail = () => {
                 <p>{job.date}</p>
             </div>
             <div>
+                <Link to={`/jobs/edit/${job.id}`}>
+                    <button>Edit Job</button>
+                </Link>
                 <button onClick={handleDelete}>Delete Job</button>
             </div>
         </>
