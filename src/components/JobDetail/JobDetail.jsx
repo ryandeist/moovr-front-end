@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getOneJob, deleteJob } from "../../services/jobservice";
+import { getBoxes } from "../../services/boxService";
 
 // component
 const JobDetail = () => {
@@ -11,14 +12,16 @@ const JobDetail = () => {
 
     // state
     const [job, setJob] = useState(null);
+    const [boxes, setBoxes] = useState([]);
 
-
-    // fetch selected job
+    // fetch selected job and boxes associates with that job
     useEffect(() => {
         const fetchJob = async () => {
             try {
                 const fetchedJob = await getOneJob(jobId);
                 setJob(fetchedJob);
+                const fetchedBoxes = await getBoxes(jobId);
+                setBoxes(fetchedBoxes);
             } catch (err) {
                 console.log(err);
             }
@@ -50,6 +53,7 @@ const JobDetail = () => {
                 <p>{job.end_location}</p>
                 <p>{job.created_at}</p>
                 <p>{job.date}</p>
+                <p>There are {boxes.length} boxes in this job.</p>
             </div>
             <div>
                 <Link to={`/jobs/edit/${job.id}`}>

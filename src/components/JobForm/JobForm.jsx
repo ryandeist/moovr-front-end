@@ -25,7 +25,6 @@ const JobForm = (props) => {
             const fetchJob = async () => {
                 try {
                     const job = await getOneJob(jobId);
-                    console.log(job)
                     setFormData(job);
                 } catch (err) {
                     console.log(err);
@@ -33,7 +32,7 @@ const JobForm = (props) => {
             };
             fetchJob();
         }
-    }, [jobId, props.isEditingJob])
+    }, [jobId, props.isEditingJob]);
 
     // handler functions
     const handleChange = (evt) => {
@@ -48,20 +47,20 @@ const JobForm = (props) => {
             try {
                 const editedJob = await editJob(jobId, formData);
                 navigate(`/jobs/${jobId}`);
-                return console.log(editedJob)
+                return console.log(editedJob);
             } catch (err) {
                 setMessage(err.message);
-            }
+            };
         } else {
             try {
                 const newJob = await createJob(formData);
                 navigate("/jobs");
-                return console.log(newJob)
+                return console.log(newJob);
             } catch (err) {
                 setMessage(err.message);
-            }
-        }
-    }
+            };
+        };
+    };
 
     // predicate function
     const isFormValid = () => {
