@@ -12,10 +12,20 @@ export const getJobs = async () => {
 
 export const getOneJob = async (jobId) => {
     try {
-        const res = await api.get(`/api/jobs/${jobId}`);
+        const res = await api.get(`/api/jobs/${jobId}/`);
 
         return res.data;
     } catch (err) {
         console.log(`Error fetching job #${jobId}:`, err);
+    };
+};
+
+export const createJob = async (formData) => {
+    try {
+        const res = await api.post(`/api/jobs/create/`, formData);
+
+        return res.data;
+    } catch (err) {
+        console.log(`Error creating job.`, err);
     };
 };

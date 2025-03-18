@@ -1,7 +1,7 @@
 // imports
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { getOneJob } from "../../services/jobService";
+import { getOneJob } from "../../services/jobservice";
 
 // component
 const JobDetail = () => {
@@ -31,7 +31,7 @@ const JobDetail = () => {
     return (
         <>
             <div>
-                <h1>{job.name}</h1>
+                <h1>{job.customer_name}</h1>
                 <p>{job.start_location}</p>
                 <p>{job.end_location}</p>
                 <p>{job.created_at}</p>

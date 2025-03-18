@@ -58,7 +58,7 @@ const SignUpForm = () => {
                         type="text"
                         name="username"
                         id="username"
-                                                placeholder="Letters, Numbers, and @,_,.,- only"
+                        placeholder="Letters, Numbers, and @,_,.,- only"
                         value={username}
                         onChange={handleChange}
                         required

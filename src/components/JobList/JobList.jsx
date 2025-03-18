@@ -1,6 +1,6 @@
 // imports
 import { useState, useEffect } from 'react';
-import { getJobs } from '../../services/jobService.js';
+import { getJobs } from '../../services/jobservice';
 import { Link } from 'react-router';
 
 // component
@@ -32,7 +32,7 @@ const JobList = () => {
             {jobs.map((job) => (
                 <div key={job.id}>
                     <div>
-                        <h2>{job.name}</h2>
+                        <h2>{job.customer_name}</h2>
                         <p>{job.date}</p>
                     </div>
                     <div>

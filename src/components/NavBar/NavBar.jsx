@@ -29,6 +29,7 @@ const NavBar = () => {
                 <div>
                     <ul>
                         <li><Link to='/jobs'>All Jobs</Link></li>
+                        <li><Link to='/jobs/create'>Create a Job</Link></li>
                         <li><Link to='/' onClick={() => {handleLogOut()}}>Log Out</Link></li>
                     </ul>
                 </div>
