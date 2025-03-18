@@ -1,26 +1,40 @@
 // imports
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
-import { getOneJob } from "../../services/jobservice";
+import { useParams, useNavigate } from "react-router";
+import { getOneJob, deleteJob } from "../../services/jobservice";
 
 // component
 const JobDetail = () => {
+    // hooks
+    const { jobId } = useParams();
+    const navigate = useNavigate();
+
     // state
     const [job, setJob] = useState(null);
-    const { id } = useParams();
+
 
     // fetch selected job
     useEffect(() => {
         const fetchJob = async () => {
             try {
-                const fetchedJob = await getOneJob(id);
+                const fetchedJob = await getOneJob(jobId);
                 setJob(fetchedJob);
             } catch (err) {
                 console.log(err);
             }
         }
         fetchJob();
-    }, [id]);
+    }, [jobId]);
+
+    // handler functions
+    const handleDelete = async () => {
+        try {
+            deleteJob(jobId);
+            navigate("/jobs");
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     // render loading screen while waiting
     if (!job) {
@@ -36,6 +50,9 @@ const JobDetail = () => {
                 <p>{job.end_location}</p>
                 <p>{job.created_at}</p>
                 <p>{job.date}</p>
+            </div>
+            <div>
+                <button onClick={handleDelete}>Delete Job</button>
             </div>
         </>
     )

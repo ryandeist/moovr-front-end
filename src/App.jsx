@@ -15,7 +15,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Landing />} />
         <Route path='/jobs' element={<ProtectedRoute><JobList /></ProtectedRoute>} />
-        <Route path='/jobs/:id' element={<ProtectedRoute><JobDetail /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId' element={<ProtectedRoute><JobDetail /></ProtectedRoute>} />
         <Route path='/jobs/create' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
         <Route path='/signup' element={<SignUpForm />} />
         <Route path='*' element={<Landing />} />

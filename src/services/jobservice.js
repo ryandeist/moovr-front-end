@@ -29,3 +29,14 @@ export const createJob = async (formData) => {
         console.log(`Error creating job.`, err);
     };
 };
+
+export const deleteJob = async (jobId) => {
+    try {
+        const res = await api.delete(`/api/jobs/${jobId}/`);
+
+        console.log(`Job #${jobId} Deleted Successfully.`);
+        return res.data;
+    } catch (err) {
+        console.log(`Error deleting job #${jobId}`, err);
+    };
+};
