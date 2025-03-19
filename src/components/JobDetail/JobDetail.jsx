@@ -61,6 +61,17 @@ const JobDetail = () => {
                 </Link>
                 <button onClick={handleDelete}>Delete Job</button>
             </div>
+            {boxes.map((box) => (
+                <div key={box.id}>
+                    <div>
+                        <h2>{box.box_name}</h2>
+                        <p>{box.size_display}</p>
+                    </div>
+                    <div>
+                        <Link to={`/jobs/${job.id}/${box.id}`}>Box Details</Link>
+                    </div>
+                </div>
+            ))}
         </>
     )
 };
