@@ -1,12 +1,12 @@
 // imports 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { createBox } from "../../services/boxService";
+import { createBox, getOneBox, updateBox } from "../../services/boxService";
 
-const BoxForm = () => {
+const BoxForm = (props) => {
     // hooks
     const navigate = useNavigate();
-    const { jobId } = useParams();
+    const { jobId, boxId } = useParams();
 
     // state
     const [formData, setFormData] = useState({
@@ -22,15 +22,40 @@ const BoxForm = () => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
     };
 
+    // fetch box if updating
+    useEffect(() => {
+        if (props.isEditingBox && boxId) {
+            const fetchBox = async () => {
+                try { 
+                    const box = await getOneBox(jobId, boxId);
+                    setFormData(box);
+                } catch (err) {
+                    console.log("Error pulling box data to update", err);
+                };
+            };
+            fetchBox();
+        };
+    }, [boxId, jobId, props.isEditingBox]);
+
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
-        try {
-            const newBox = await createBox(jobId, formData);
-            navigate(`/jobs/${jobId}`);
-            return console.log(newBox);
-        } catch (err) {
-            setMessage(err.message);
+        if (props.isEditingBox) {
+            try {
+                const editedBox = await updateBox(jobId, boxId, formData);
+                navigate(`/jobs/${jobId}/${boxId}`);
+                return console.log(editedBox);
+            } catch (err) {
+                setMessage(err.message);
+            };
+        } else {
+            try {
+                const newBox = await createBox(jobId, formData);
+                navigate(`/jobs/${jobId}`);
+                return console.log(newBox);
+            } catch (err) {
+                setMessage(err.message);
+            };
         };
     };
 
@@ -42,7 +67,7 @@ const BoxForm = () => {
 
     return (
         <>
-            <h1>Create a Box</h1>
+            <h1>{props.isEditingBox ? 'Edit Box' : 'Create a Box'}</h1>
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="box_name">Box Name: </label>
@@ -73,7 +98,7 @@ const BoxForm = () => {
                     <p>{message}</p>
                 </div>
                 <div>
-                    <button disabled={isFormValid()}>Create Box</button>
+                    <button disabled={isFormValid()}>{props.isEditingBox ? 'Edit Box' : 'Create Box'}</button>
                 </div>
             </form>
         </>

@@ -37,8 +37,8 @@ export const editJob = async (jobId, formData) => {
         return res.data;
     } catch (err) {
         console.log(`Error editing job.`, err);
-    }
-}
+    };
+};
 
 export const deleteJob = async (jobId) => {
     try {

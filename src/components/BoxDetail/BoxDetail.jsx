@@ -1,7 +1,7 @@
 // imports
 import { useState, useEffect } from "react";
 import { deleteBox, getOneBox } from "../../services/boxService";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 
 // component
 const BoxDetail = () => {
@@ -39,17 +39,21 @@ const BoxDetail = () => {
         return <h1>Loading...</h1>
     }
 
+    // return
     return (
         <>
             <div>
                 <h1>{box.box_name}</h1>
             </div>
             <div>
-                <button>Edit Box</button>
+                <Link to={`/jobs/${jobId}/${boxId}/edit-box`}>
+                    <button>Edit Box</button>
+                </Link>
                 <button onClick={handleDeleteBox}>Delete Box</button>
             </div>
         </>
     )
 };
 
+// export
 export default BoxDetail

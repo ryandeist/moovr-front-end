@@ -22,6 +22,7 @@ const App = () => {
         <Route path='/jobs/:jobId/edit' element={<ProtectedRoute><JobForm isEditingJob={true} /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId' element={<ProtectedRoute><BoxDetail /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/create-box' element={<ProtectedRoute><BoxForm /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/:boxId/edit-box' element={<ProtectedRoute><BoxForm isEditingBox={true} /></ProtectedRoute>} />
         <Route path='/signup' element={<SignUpForm />} />
         <Route path='*' element={<Landing />} />
       </Routes>
