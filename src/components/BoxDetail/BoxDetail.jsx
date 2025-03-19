@@ -30,7 +30,13 @@ const BoxDetail = () => {
 
     return (
         <>
-            <h1>{box.box_name}</h1>
+            <div>
+                <h1>{box.box_name}</h1>
+            </div>
+            <div>
+                <button>Edit Box</button>
+                <button>Delete Box</button>
+            </div>
         </>
     )
 };

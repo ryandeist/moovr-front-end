@@ -56,10 +56,15 @@ const JobDetail = () => {
                 <p>There are {boxes.length} boxes in this job.</p>
             </div>
             <div>
-                <Link to={`/jobs/edit/${job.id}`}>
+                <Link to={`/jobs/${job.id}/edit`}>
                     <button>Edit Job</button>
                 </Link>
                 <button onClick={handleDelete}>Delete Job</button>
+            </div>
+            <div>
+                <Link to={`/jobs/${job.id}/create-box`}>
+                    <button>Add a Box</button>
+                </Link>
             </div>
             {boxes.map((box) => (
                 <div key={box.id}>

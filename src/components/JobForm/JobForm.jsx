@@ -15,9 +15,9 @@ const JobForm = (props) => {
         end_location: "",
         date: "",
     });
+    const { customer_name, start_location, end_location, date } = formData;
 
     const [message, setMessage] = useState("");
-    const { customer_name, start_location, end_location, date } = formData;
 
     // fetch job if updating
     useEffect(() => {
@@ -38,7 +38,7 @@ const JobForm = (props) => {
     const handleChange = (evt) => {
         setMessage("");
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
-    }
+    };
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();

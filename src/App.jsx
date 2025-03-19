@@ -8,6 +8,7 @@ import { Routes, Route, Navigate } from 'react-router';
 import JobDetail from './components/JobDetail/JobDetail';
 import JobForm from './components/JobForm/JobForm';
 import BoxDetail from './components/BoxDetail/BoxDetail';
+import BoxForm from './components/BoxForm/BoxForm';
 
 const App = () => {
   return (
@@ -18,8 +19,9 @@ const App = () => {
         <Route path='/jobs' element={<ProtectedRoute><JobList /></ProtectedRoute>} />
         <Route path='/jobs/:jobId' element={<ProtectedRoute><JobDetail /></ProtectedRoute>} />
         <Route path='/jobs/create' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
-        <Route path='/jobs/edit/:jobId' element={<ProtectedRoute><JobForm isEditingJob={true} /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/edit' element={<ProtectedRoute><JobForm isEditingJob={true} /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId' element={<ProtectedRoute><BoxDetail /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/create-box' element={<ProtectedRoute><BoxForm /></ProtectedRoute>} />
         <Route path='/signup' element={<SignUpForm />} />
         <Route path='*' element={<Landing />} />
       </Routes>

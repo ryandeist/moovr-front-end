@@ -19,3 +19,14 @@ export const getOneBox = async (jobId, boxId) => {
         console.log(`Error fetching box #${boxId}:`, err);
     };
 };
+
+export const createBox = async (jobId, formData) => {
+    console.log(formData)
+    try {
+        const res = await api.post(`/api/jobs/${jobId}/boxes/create/`, formData);
+        console.log(res.data)
+        return res.data;
+    } catch (err) {
+        console.log(`Error creating box:`, err);
+    };
+};
