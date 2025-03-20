@@ -9,6 +9,7 @@ import JobDetail from './components/JobDetail/JobDetail';
 import JobForm from './components/JobForm/JobForm';
 import BoxDetail from './components/BoxDetail/BoxDetail';
 import BoxForm from './components/BoxForm/BoxForm';
+import ItemDetail from './components/ItemDetail/ItemDetail';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path='/jobs/:jobId/:boxId' element={<ProtectedRoute><BoxDetail /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/create-box' element={<ProtectedRoute><BoxForm /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId/edit-box' element={<ProtectedRoute><BoxForm isEditingBox={true} /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/:boxId/:itemId' element={<ProtectedRoute><ItemDetail /></ProtectedRoute>} />
         <Route path='/signup' element={<SignUpForm />} />
         <Route path='*' element={<Landing />} />
       </Routes>

@@ -56,7 +56,7 @@ const BoxDetail = () => {
                                     <h2>{item.name}</h2>
                                 </div>
                                 <div>
-                                    <Link>Item Details</Link>
+                                    <Link to={`/jobs/${jobId}/${boxId}/${item.id}`}>Item Details</Link>
                                 </div>
                             </div>
                         ))
