@@ -12,8 +12,9 @@ const BoxForm = (props) => {
     const [formData, setFormData] = useState({
         box_name: "",
         size: "1",
+        box_description: "",
     });
-    const { box_name, size} = formData;
+    const { box_name, size, box_description} = formData;
     const [message, setMessage] = useState("");
 
     // handler functions
@@ -78,6 +79,15 @@ const BoxForm = (props) => {
                         value={box_name}
                         onChange={handleChange}
                         required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="box_description">Box Description: </label>
+                    <textarea
+                        name="box_description"
+                        id="descrbox_descriptioniption"
+                        value={box_description}
+                        onChange={handleChange}
                     />
                 </div>
                 <div>

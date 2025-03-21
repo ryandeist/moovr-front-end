@@ -67,6 +67,11 @@ const BoxDetail = () => {
                 </Link>
                 <button onClick={handleDeleteBox}>Delete Box</button>
             </div>
+            <div>
+                <Link to={`/jobs/${jobId}/${boxId}/add-item`}>
+                    <button>Add Item</button>
+                </Link>
+            </div>
         </>
     )
 };

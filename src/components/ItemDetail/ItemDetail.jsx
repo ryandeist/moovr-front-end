@@ -1,6 +1,6 @@
 // imports
 import {useState, useEffect} from "react"
-import { useParams } from "react-router"
+import { useParams, Link } from "react-router"
 import { getOneItemInBox } from "../../services/itemService"
 
 // component
@@ -26,10 +26,21 @@ const ItemDetail = () => {
     }, [jobId, boxId, itemId]);
 
     console.log(item);
-    
+    if (!item) {
+        return <h1>Loading...</h1>
+    }
+
     return (
         <>
-            <h1>This is Item Detail.</h1>
+            <div>
+                <h1>{item.name}</h1>
+            </div>
+            <div>
+                <Link to={`/jobs/${jobId}/${boxId}/add-item`}>
+                    <button>Edit Box</button>
+                </Link>
+                <button>Delete Box</button>
+            </div>
         </>
     )
 }
