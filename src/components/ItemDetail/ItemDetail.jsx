@@ -1,12 +1,13 @@
 // imports
 import {useState, useEffect} from "react"
-import { useParams, Link } from "react-router"
-import { getOneItemInBox } from "../../services/itemService"
+import { useParams, Link, useNavigate } from "react-router"
+import { deleteItem, getOneItemInBox } from "../../services/itemService"
 
 // component
 const ItemDetail = () => {
     // hooks
     const { jobId, boxId, itemId } = useParams()
+    const navigate = useNavigate()
 
     // state
     const [item, setItem] = useState(null)
@@ -25,6 +26,15 @@ const ItemDetail = () => {
         fetchItem();
     }, [jobId, boxId, itemId]);
 
+    const handleDelete = async() => {
+        try {
+            await deleteItem(jobId, boxId, itemId)
+            navigate(`/jobs/${jobId}/${boxId}`)
+        } catch (err) {
+            console.log('Error Deleting Item', err);
+        };
+
+    }
     console.log(item);
     if (!item) {
         return <h1>Loading...</h1>
@@ -39,7 +49,7 @@ const ItemDetail = () => {
                 <Link to={`/jobs/${jobId}/${boxId}/add-item`}>
                     <button>Edit Box</button>
                 </Link>
-                <button>Delete Box</button>
+                <button onClick={handleDelete}>Delete Box</button>
             </div>
         </>
     )

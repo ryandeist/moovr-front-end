@@ -29,3 +29,13 @@ export const createItem = async (jobId, boxId, formData) => {
         console.log(`Error creating item`, err);
     };
 }
+
+export const deleteItem = async (jobId, boxId, itemId) => {
+    try {
+        const res = await api.delete(`/api/jobs/${jobId}/boxes/${boxId}/items/${itemId}/`);
+
+        return res.data;
+    } catch (err) {
+        console.log(`Error fetching item #${itemId} in box #${boxId}`, err);
+    };
+};
