@@ -46,10 +46,10 @@ const ItemDetail = () => {
                 <h1>{item.name}</h1>
             </div>
             <div>
-                <Link to={`/jobs/${jobId}/${boxId}/add-item`}>
-                    <button>Edit Box</button>
+                <Link to={`/jobs/${jobId}/${boxId}/${itemId}/edit-item`}>
+                    <button>Edit Item</button>
                 </Link>
-                <button onClick={handleDelete}>Delete Box</button>
+                <button onClick={handleDelete}>Delete Item</button>
             </div>
         </>
     )

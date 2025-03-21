@@ -36,6 +36,16 @@ export const deleteItem = async (jobId, boxId, itemId) => {
 
         return res.data;
     } catch (err) {
-        console.log(`Error fetching item #${itemId} in box #${boxId}`, err);
+        console.log(`Error deleting item #${itemId}`, err);
+    };
+};
+
+export const editItem = async (jobId, boxId, itemId, formData) => {
+    try {
+        const res = await api.put(`/api/jobs/${jobId}/boxes/${boxId}/items/${itemId}/`, formData);
+
+        return res.data;
+    } catch (err) {
+        console.log(`Error updating item #${itemId} in box #${boxId}`, err);
     };
 };

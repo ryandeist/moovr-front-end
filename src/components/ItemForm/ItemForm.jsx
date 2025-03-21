@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { createItem } from "../../services/itemService";
+import { createItem, editItem, getOneItemInBox } from "../../services/itemService";
 import { getBoxes } from "../../services/boxService";
 
 
 // components
-const ItemForm = () => {
+const ItemForm = (props) => {
     // hooks
     const navigate = useNavigate();
-    const { jobId, boxId } = useParams();
+    const { jobId, boxId, itemId } = useParams();
 
     // state variables
     const [formData, setFormData] = useState({
@@ -41,7 +41,18 @@ const ItemForm = () => {
             }
         };
         fetchBoxes();
-    }, [jobId, boxId]);
+        if (props.isEditingItem && itemId) {
+            const fetchItem = async () => {
+                try {
+                    const fetchedItem = await getOneItemInBox(jobId, boxId, itemId)
+                    setFormData(fetchedItem)
+                } catch (err) {
+                    console.log('Error fetching Item to update.', err)
+                }
+            }
+            fetchItem();
+        }
+    }, [jobId, boxId, itemId, props.isEditingItem]);
 
     // handler functions
     const handleChange = (evt) => {
@@ -57,14 +68,23 @@ const ItemForm = () => {
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
-
-        try {
-            const newItem = await createItem(jobId, boxId, formData);
-            navigate(`/jobs/${jobId}/${boxId}`);
-            return console.log(newItem);
-        } catch (err) {
-            setMessage(err.message);
-        };
+        if (props.isEditingItem) {
+            try {
+                const editedItem = await editItem(jobId, boxId, itemId, formData)
+                navigate(`/jobs/${jobId}/${formData.box}/${itemId}`)
+                return console.log(editedItem)
+            } catch (err) {
+                console.log('Error updating item.', err)
+            }
+        } else {
+            try {
+                const newItem = await createItem(jobId, boxId, formData);
+                navigate(`/jobs/${jobId}/${boxId}`);
+                return console.log(newItem);
+            } catch (err) {
+                setMessage(err.message);
+            };
+        }
     };
 
     // predicate function
@@ -81,7 +101,7 @@ const ItemForm = () => {
     // return
     return (
         <>
-            <h1>{'Add an Item'}</h1>
+            <h1>{props.isEditingItem ? 'Edit Item' : 'Create an Item'}</h1>
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Item Name: </label>
@@ -104,7 +124,7 @@ const ItemForm = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="is_fragile">Ending Location: </label>
+                    <label htmlFor="is_fragile">Fragile: </label>
                     <input
                         type="checkbox"
                         id="is_fragile"
@@ -114,7 +134,7 @@ const ItemForm = () => {
                     />
                 </div>
                 <div>
-                    <label htmlFor="is_heavy">Ending Location: </label>
+                    <label htmlFor="is_heavy">Heavy: </label>
                     <input
                         type="checkbox"
                         id="is_heavy"
@@ -142,7 +162,7 @@ const ItemForm = () => {
                     </select>
                 </div>
                 <p>{message}</p>
-                <button disabled={isFormValid()}>'Create Item'</button>
+                <button disabled={isFormValid()}>{props.isEditingItem ? 'Edit Item' : 'Create Item'}</button>
             </form>
         </>
     )
