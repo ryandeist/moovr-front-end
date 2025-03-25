@@ -9,21 +9,9 @@ import Logo from '../../../public/images/cardboard-box-logo.png'
 const NavBar = () => {
     // hooks
     const { user, setUser } = useContext(UserContext);
-    const [isNavOpen, setIsNavOpen] = useState(false)
 
-    // const variables
-    const navLinks = user
-        ? [
-            { name: 'Home', to: '/' },
-            { name: 'About', to: '/' },
-            { name: 'All Jobs', to: '/jobs' },
-            { name: 'Create a Job', to: '/jobs/create' },
-            { name: 'Log Out', to: '/', onClick: handleLogOut },
-        ] : [
-            { name: 'Home', to: '/' },
-            { name: 'About', to: '/' },
-            { name: 'Sign Up', to: '/signup', onClick: clearTokenForSignUp, buttonStyle: true },
-        ]
+    // state
+    const [isNavOpen, setIsNavOpen] = useState(false)
 
     // handler functions
     const handleLogOut = () => {
@@ -35,6 +23,20 @@ const NavBar = () => {
         localStorage.clear();
         setUser(null);
     };
+
+    // const variables
+    const navLinks = user
+        ? [
+            { name: 'Home', to: '/' },
+            { name: 'About', to: '/' },
+            { name: 'All Jobs', to: '/jobs' },
+            { name: 'Create a Job', to: '/jobs/create' },
+            { name: 'Log Out', to: '/', onClick: handleLogOut, buttonStyle: true },
+        ] : [
+            { name: 'Home', to: '/' },
+            { name: 'About', to: '/' },
+            { name: 'Sign Up', to: '/signup', onClick: clearTokenForSignUp, buttonStyle: true },
+        ]
 
     // return
     return (
