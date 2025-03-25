@@ -43,7 +43,7 @@ const LoginForm = () => {
     // return
     return (
         <>
-            <h1>Log In</h1>
+            <h1 className='text-3xl font-bold underline'>Log In</h1>
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>

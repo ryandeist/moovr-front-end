@@ -1,4 +1,3 @@
-import './App.css';
 import JobList from './components/JobList/JobList';
 import Landing from './components/Landing/Landing';
 import NavBar from './components/NavBar/NavBar';
