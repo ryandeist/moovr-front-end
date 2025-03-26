@@ -17,11 +17,13 @@ const NavBar = () => {
     const handleLogOut = () => {
         localStorage.clear();
         setUser(null);
+        setIsNavOpen(false);
     };
 
     const clearTokenForSignUp = () => {
         localStorage.clear();
         setUser(null);
+        setIsNavOpen(false);
     };
 
     // const variables
@@ -36,11 +38,11 @@ const NavBar = () => {
             { name: 'Home', to: '/' },
             { name: 'About', to: '/' },
             { name: 'Sign Up', to: '/signup', onClick: clearTokenForSignUp, buttonStyle: true },
-        ]
+        ];
 
     // return
     return (
-        <nav className='flex bg-white items-center justify-between px-10 shadow-lg relative'>
+        <nav className='flex bg-white items-center justify-between px-[4%] shadow-lg relative mx-auto'>
             <div className='container mx-auto flex justify-between items-center'>
                 <div className='flex items-center'>
                     <div>
@@ -94,13 +96,13 @@ const NavBar = () => {
                                     <Link
                                         className='bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'
                                         to={item.to}
-                                        onClick={item.onClick ? item.onClick : undefined}
+                                        onClick={item.onClick ? item.onClick : ()=>setIsNavOpen(false)}
                                     >
                                         {item.name}
                                     </Link>
                                 </button>
                             ) : (
-                                <Link to={item.to} onClick={item.onClick ? item.onClick : undefined}>
+                                <Link to={item.to} onClick={item.onClick ? item.onClick : ()=>setIsNavOpen(false)}>
                                     {item.name}
                                 </Link>
                             )}

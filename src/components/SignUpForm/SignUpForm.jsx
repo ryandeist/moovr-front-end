@@ -49,36 +49,41 @@ const SignUpForm = () => {
 
     // return
     return (
-        <>
-            <h1>Sign Up Page</h1>
-            <form autoComplete='off' onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username:</label>
+        <div className='flex flex-col bg-white w-[90%] shadow-lg h-120 rounded-lg justify-self-center items-center mt-5 max-w-3xl'>
+            <h1 className='text-3xl font-bold pt-5'>Sign Up</h1>
+            <form className='mt-4 w-[80%]' autoComplete='off' onSubmit={handleSubmit}>
+                <div className='w-[100%]'>
+                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="username">Username:</label>
                     <input
+                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         type="text"
                         name="username"
                         id="username"
-                        placeholder="Letters, Numbers, and @,_,.,- only"
+                        placeholder="Enter a Username"
                         value={username}
                         onChange={handleChange}
                         required
                     />
+                    <p className="text-xs mb-5">*Letters, Numbers, and @,_,.,- only</p>
                 </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
+                <div className='w-[100%]'>
+                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="password">Password:</label>
                     <input
+                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         type="password"
                         name="password"
                         id="password"
-                        placeholder="Must be > 6 characters"
+                        placeholder="Enter Password"
                         value={password}
                         onChange={handleChange}
                         required
                     />
+                    <p className="text-xs mb-5">*Must be greater then six characters</p>
                 </div>
-                <div>
-                    <label htmlFor="confirm">Confirm Password:</label>
+                <div className='w-[100%]'>
+                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="confirm">Confirm Password:</label>
                     <input
+                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                         type="password"
                         id="confirm"
                         name="passwordConfirm"
@@ -87,11 +92,12 @@ const SignUpForm = () => {
                         onChange={handleChange}
                         required
                     />
+                    <p className="text-xs mb-5">*Must match password</p>
                 </div>
-                <p>{message}</p>
-                <button disabled={isSignUpValid()}>Sign In</button>
+                <button  className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()}>Sign Up</button>
+                <p className="text-red-500 justify-self-center mt-1">{message}</p>
             </form>
-        </>
+        </div>
     )
 };
 
