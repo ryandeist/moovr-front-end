@@ -94,7 +94,7 @@ const SignUpForm = () => {
                     />
                     <p className="text-xs mb-5">*Must match password</p>
                 </div>
-                <button  className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()}>Sign Up</button>
+                <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()}>Sign Up</button>
                 <p className="text-red-500 justify-self-center mt-1">{message}</p>
             </form>
         </div>

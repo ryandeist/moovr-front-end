@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getOneJob, deleteJob } from "../../services/jobservice";
 import { getBoxes } from "../../services/boxService";
+import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 
 // component
 const JobDetail = () => {
@@ -47,6 +48,7 @@ const JobDetail = () => {
     // return
     return (
         <>
+            <Breadcrumb job={job} />
             <div>
                 <h1>{job.customer_name}</h1>
                 <p>{job.start_location}</p>

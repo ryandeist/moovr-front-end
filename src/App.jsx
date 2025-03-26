@@ -19,10 +19,10 @@ const App = () => {
         <Route path='/' element={<Landing />} />
         <Route path='/jobs' element={<ProtectedRoute><JobList /></ProtectedRoute>} />
         <Route path='/jobs/:jobId' element={<ProtectedRoute><JobDetail /></ProtectedRoute>} />
-        <Route path='/jobs/create' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
-        <Route path='/jobs/:jobId/edit' element={<ProtectedRoute><JobForm isEditingJob={true} /></ProtectedRoute>} />
+        <Route path='/jobs/add-job' element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/edit-job' element={<ProtectedRoute><JobForm isEditingJob={true} /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId' element={<ProtectedRoute><BoxDetail /></ProtectedRoute>} />
-        <Route path='/jobs/:jobId/create-box' element={<ProtectedRoute><BoxForm /></ProtectedRoute>} />
+        <Route path='/jobs/:jobId/add-box' element={<ProtectedRoute><BoxForm /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId/edit-box' element={<ProtectedRoute><BoxForm isEditingBox={true} /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId/:itemId' element={<ProtectedRoute><ItemDetail /></ProtectedRoute>} />
         <Route path='/jobs/:jobId/:boxId/add-item' element={<ProtectedRoute><ItemForm /></ProtectedRoute>} />

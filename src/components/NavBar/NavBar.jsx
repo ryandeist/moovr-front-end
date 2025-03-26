@@ -32,7 +32,7 @@ const NavBar = () => {
             { name: 'Home', to: '/' },
             { name: 'About', to: '/' },
             { name: 'All Jobs', to: '/jobs' },
-            { name: 'Create a Job', to: '/jobs/create' },
+            { name: 'New Job', to: '/jobs/add-job' },
             { name: 'Log Out', to: '/', onClick: handleLogOut, buttonStyle: true },
         ] : [
             { name: 'Home', to: '/' },
@@ -96,13 +96,13 @@ const NavBar = () => {
                                     <Link
                                         className='bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'
                                         to={item.to}
-                                        onClick={item.onClick ? item.onClick : ()=>setIsNavOpen(false)}
+                                        onClick={item.onClick ? item.onClick : () => setIsNavOpen(false)}
                                     >
                                         {item.name}
                                     </Link>
                                 </button>
                             ) : (
-                                <Link to={item.to} onClick={item.onClick ? item.onClick : ()=>setIsNavOpen(false)}>
+                                <Link to={item.to} onClick={item.onClick ? item.onClick : () => setIsNavOpen(false)}>
                                     {item.name}
                                 </Link>
                             )}
