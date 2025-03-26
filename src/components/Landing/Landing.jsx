@@ -9,7 +9,7 @@ const Landing = () => {
     return (
         <>
             <div className='flex flex-col lg:flex-row lg:h-[40%] p-5 lg:pt-10 items-top w-[100%] justify-around mx-auto max-w-7xl'>
-                <section className='flex hidden lg:block content-center items-center flex-col pb-5 bg-white w-[100%] lg:w-[40%] shadow-lg h-110 rounded-lg justify-items-center'>
+                <section className='hidden lg:block content-center items-center flex-col pb-5 bg-white w-[100%] lg:w-[40%] shadow-lg h-110 rounded-lg justify-items-center'>
                     <h1 className='text-4xl'>Welcome to Moovr</h1>
                     <p>Your Mooving Solution</p>
                 </section>

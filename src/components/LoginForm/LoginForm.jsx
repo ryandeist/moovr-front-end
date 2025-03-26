@@ -71,12 +71,10 @@ const LoginForm = () => {
                         required
                     />
                 </div>
-
-                    <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()} disabled={isSignUpValid()}>Log In</button>
-                    <p className='flex justify-self-center'>or</p>
-                    <button className='flex justify-self-center bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'><Link to='/signup'>Sign Up</Link></button>
-                    <p className="text-red-500 justify-self-center mt-1">{message}</p>
-
+                <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()}>Log In</button>
+                <p className='flex justify-self-center'>or</p>
+                <button className='flex justify-self-center bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'><Link to='/signup'>Sign Up</Link></button>
+                <p className="text-red-500 justify-self-center mt-1">{message}</p>
             </form>
         </div>
     )
