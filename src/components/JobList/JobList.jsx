@@ -6,7 +6,7 @@ import Delete from '../../../public/images/delete-icon.png';
 import { deleteJob } from '../../services/jobService';
 
 // component
-const JobList = () => {
+const JobList = ({ openDeleteModal }) => {
     // state
     const [jobs, setJobs] = useState([]);
 
@@ -87,7 +87,9 @@ const JobList = () => {
                                 <div className='my-auto'>
                                     <Link to={`/jobs/${job.id}`}><p className='bg-amber-600 hover:bg-amber-500 text-white py-1 px-4 rounded-xl'>Details</p></Link>
                                 </div>
-                                <button onClick={() => handleDelete(job.id)}><img className='my-auto w-8 opacity-50 hover:opacity-100' src={Delete} alt="cardboard box logo" /></button>
+                                <button onClick={() => openDeleteModal(`Are you sure you want to delete ${job.customer_name}?`, () => handleDelete(job.id))}>
+                                    <img className='my-auto w-8 opacity-50 hover:opacity-100' src={Delete} alt="Delete Icon" />
+                                </button>
                             </div>
                         </div>
                     )

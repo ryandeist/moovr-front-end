@@ -41,8 +41,6 @@ const Breadcrumb = () => {
         }
     }, [jobId, boxId, itemId])
 
-    console.log(jobName, boxName, itemName)
-
     // const variables
     const pathnames = location.pathname.split("/").filter((pathItem) => pathItem);
 
