@@ -17,9 +17,10 @@ const Landing = () => {
                     <section className='w-[100%] lg:w-[40%] h-110 rounded-lg content-center justify-items-center'>
                         <LinkBoxes />
                     </section>
-                ) : <section className='bg-white w-[100%] lg:w-[40%] shadow-lg h-110 rounded-lg content-center justify-items-center'>
+                ) : (<section className='bg-white w-[100%] lg:w-[40%] shadow-lg h-110 rounded-lg content-center justify-items-center'>
                     <LoginForm />
-                </section>}
+                </section>
+                )}
             </div>
         </>
     )
