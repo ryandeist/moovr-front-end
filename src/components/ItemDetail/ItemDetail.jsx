@@ -1,7 +1,8 @@
 // imports
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate } from "react-router"
 import { deleteItem, getOneItemInBox } from "../../services/itemService"
+import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb"
 
 // component
 const ItemDetail = () => {
@@ -26,7 +27,7 @@ const ItemDetail = () => {
         fetchItem();
     }, [jobId, boxId, itemId]);
 
-    const handleDelete = async() => {
+    const handleDelete = async () => {
         try {
             await deleteItem(jobId, boxId, itemId)
             navigate(`/jobs/${jobId}/${boxId}`)
@@ -42,6 +43,9 @@ const ItemDetail = () => {
 
     return (
         <>
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>
             <div>
                 <h1>{item.name}</h1>
             </div>

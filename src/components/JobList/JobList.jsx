@@ -1,6 +1,6 @@
 // imports
 import { useState, useEffect } from 'react';
-import { getJobs } from '../../services/jobservice';
+import { getJobs } from '../../services/jobService';
 import { Link } from 'react-router';
 
 // component

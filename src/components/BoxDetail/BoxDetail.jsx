@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { deleteBox, getOneBox } from "../../services/boxService";
 import { useParams, useNavigate, Link } from "react-router";
 import { getItemsInBox } from "../../services/itemService";
-
+import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 // component
 const BoxDetail = () => {
     // hooks
-    const { jobId, boxId} = useParams();
+    const { jobId, boxId } = useParams();
     const navigate = useNavigate();
 
     // state
@@ -46,20 +46,23 @@ const BoxDetail = () => {
     // return
     return (
         <>
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>
             <div>
                 <h1>{box.box_name}</h1>
             </div>
-            {items.length === 0 ? <div>This box is empty.</div> : 
+            {items.length === 0 ? <div>This box is empty.</div> :
                 items.map((item) => (
-                            <div key={item.id}>
-                                <div>
-                                    <h2>{item.name}</h2>
-                                </div>
-                                <div>
-                                    <Link to={`/jobs/${jobId}/${boxId}/${item.id}`}>Item Details</Link>
-                                </div>
-                            </div>
-                        ))
+                    <div key={item.id}>
+                        <div>
+                            <h2>{item.name}</h2>
+                        </div>
+                        <div>
+                            <Link to={`/jobs/${jobId}/${boxId}/${item.id}`}>Item Details</Link>
+                        </div>
+                    </div>
+                ))
             }
             <div>
                 <Link to={`/jobs/${jobId}/${boxId}/edit-box`}>

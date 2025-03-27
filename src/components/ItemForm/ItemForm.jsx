@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { createItem, editItem, getOneItemInBox } from "../../services/itemService";
 import { getBoxes } from "../../services/boxService";
+import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 
 
 // components
@@ -29,9 +30,9 @@ const ItemForm = (props) => {
             try {
                 const fetchedBoxes = await getBoxes(jobId);
                 const defaultBox = fetchedBoxes.find((box) => box.id === Number(boxId));
+                setDefaultBox(defaultBox);
 
-                if (defaultBox) {
-                    setDefaultBox(defaultBox);
+                if (fetchedBoxes.length > 0) {
                     setBoxes(fetchedBoxes.filter((box) => box.id !== Number(boxId)));
                 } else {
                     setBoxes(fetchedBoxes);
@@ -61,7 +62,7 @@ const ItemForm = (props) => {
 
         setFormData((prevData) => ({
             ...prevData,
-            [name]: type === "checkbox" ? checked : value, 
+            [name]: type === "checkbox" ? checked : value,
         }));
     };
 
@@ -94,13 +95,16 @@ const ItemForm = (props) => {
         );
     };
 
-    if (!defaultBox || boxes.length === 0) {
+    if (!defaultBox) {
         return <h1>Loading...</h1>
     }
 
     // return
     return (
         <>
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>
             <h1>{props.isEditingItem ? 'Edit Item' : 'Create an Item'}</h1>
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <div>

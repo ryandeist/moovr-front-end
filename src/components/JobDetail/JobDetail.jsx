@@ -1,7 +1,7 @@
 // imports
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { getOneJob, deleteJob } from "../../services/jobservice";
+import { getOneJob, deleteJob } from "../../services/jobService";
 import { getBoxes } from "../../services/boxService";
 import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 
@@ -48,7 +48,9 @@ const JobDetail = () => {
     // return
     return (
         <>
-            <Breadcrumb job={job} />
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>
             <div>
                 <h1>{job.customer_name}</h1>
                 <p>{job.start_location}</p>
@@ -64,7 +66,7 @@ const JobDetail = () => {
                 <button onClick={handleDelete}>Delete Job</button>
             </div>
             <div>
-                <Link to={`/jobs/${job.id}/create-box`}>
+                <Link to={`/jobs/${job.id}/add-box`}>
                     <button>Add a Box</button>
                 </Link>
             </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { createJob, editJob, getOneJob } from "../../services/jobservice";
+import { createJob, editJob, getOneJob } from "../../services/jobService";
 import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 
 // components
@@ -76,14 +76,17 @@ const JobForm = (props) => {
     // return
     return (
         <>
-            <Breadcrumb />
-            <div className='flex flex-col bg-white w-[90%] shadow-lg h-120 rounded-lg justify-self-center items-center mt-5 max-w-3xl'>
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>       
+            <div className='flex flex-col bg-white w-[90%] shadow-lg h-120 rounded-lg justify-self-center items-center pt-5 mt-5 max-w-3xl'>
                 <h1 className='text-3xl font-bold'>{props.isEditingJob ? 'Edit Job' : 'Add Job'}</h1>
                 <form className='mt-4 w-[80%]' autoComplete='off' onSubmit={handleSubmit}>
                     <div>
                         <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="customer_name">Customer Name: </label>
                         <input
                             className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            placeholder="Enter Customer Name"
                             type="text"
                             name="customer_name"
                             id="customer_name"
@@ -96,6 +99,7 @@ const JobForm = (props) => {
                         <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="start_location">Starting Location: </label>
                         <input
                             className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            placeholder="Enter Pickup Location"
                             type="text"
                             name="start_location"
                             id="start_location"
@@ -108,6 +112,7 @@ const JobForm = (props) => {
                         <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="end_location">Ending Location: </label>
                         <input
                             className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            placeholder="Enter Destination"
                             type="text"
                             id="end_location"
                             name="end_location"
@@ -117,7 +122,7 @@ const JobForm = (props) => {
                         />
                     </div>
                     <div>
-                        <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="date">Ending Location: </label>
+                        <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="date">Move Date: </label>
                         <input
                             className='shadow appearance-none border rounded w-full py-2 px-3 mb-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                             type="date"

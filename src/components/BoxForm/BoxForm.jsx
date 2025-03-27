@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { createBox, getOneBox, updateBox } from "../../services/boxService";
+import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
 
 const BoxForm = (props) => {
     // hooks
@@ -14,7 +15,7 @@ const BoxForm = (props) => {
         size: "1",
         box_description: "",
     });
-    const { box_name, size, box_description} = formData;
+    const { box_name, size, box_description } = formData;
     const [message, setMessage] = useState("");
 
     // handler functions
@@ -27,7 +28,7 @@ const BoxForm = (props) => {
     useEffect(() => {
         if (props.isEditingBox && boxId) {
             const fetchBox = async () => {
-                try { 
+                try {
                     const box = await getOneBox(jobId, boxId);
                     setFormData(box);
                 } catch (err) {
@@ -68,49 +69,54 @@ const BoxForm = (props) => {
 
     return (
         <>
-            <h1>{props.isEditingBox ? 'Edit Box' : 'Create a Box'}</h1>
-            <form autoComplete='off' onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="box_name">Box Name: </label>
-                    <input 
-                        type="text"
-                        name="box_name"
-                        id="box_name"
-                        value={box_name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <label htmlFor="box_description">Box Description: </label>
-                    <textarea
-                        name="box_description"
-                        id="descrbox_descriptioniption"
-                        value={box_description}
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="size">Box Size: </label>
-                    <select 
-                        value={size}
-                        onChange={handleChange} 
-                        id="size"
-                        name="size"
-                    >
-                        <option value="1">Small</option>
-                        <option value="2">Medium</option>
-                        <option value="3">Large</option>
-                        <option value="4">Extra Large</option>
-                    </select>
-                </div>
-                <div>
-                    <p>{message}</p>
-                </div>
-                <div>
-                    <button disabled={isFormValid()}>{props.isEditingBox ? 'Edit Box' : 'Create Box'}</button>
-                </div>
-            </form>
+            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+                <Breadcrumb />
+            </div>
+            <div>
+                <h1>{props.isEditingBox ? 'Edit Box' : 'Create a Box'}</h1>
+                <form autoComplete='off' onSubmit={handleSubmit}>
+                    <div>
+                        <label htmlFor="box_name">Box Name: </label>
+                        <input
+                            type="text"
+                            name="box_name"
+                            id="box_name"
+                            value={box_name}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="box_description">Box Description: </label>
+                        <textarea
+                            name="box_description"
+                            id="descrbox_descriptioniption"
+                            value={box_description}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="size">Box Size: </label>
+                        <select
+                            value={size}
+                            onChange={handleChange}
+                            id="size"
+                            name="size"
+                        >
+                            <option value="1">Small</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Large</option>
+                            <option value="4">Extra Large</option>
+                        </select>
+                    </div>
+                    <div>
+                        <p>{message}</p>
+                    </div>
+                    <div>
+                        <button disabled={isFormValid()}>{props.isEditingBox ? 'Edit Box' : 'Create Box'}</button>
+                    </div>
+                </form>
+            </div>
         </>
     )
 };
