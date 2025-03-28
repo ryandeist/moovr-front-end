@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getOneJob, deleteJob } from "../../services/jobService";
 import { getBoxes } from "../../services/boxService";
-import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import BoxIcon from "../../../public/images/cardboard-box-logo.png";
 
 // component

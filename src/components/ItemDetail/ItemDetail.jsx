@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { useParams, Link, useNavigate } from "react-router"
 import { deleteItem, getOneItemInBox } from "../../services/itemService"
-import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb"
+import Breadcrumb from "../Breadcrumb/Breadcrumb"
 
 // component
 const ItemDetail = () => {

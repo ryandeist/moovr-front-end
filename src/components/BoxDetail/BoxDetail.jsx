@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { deleteBox, getOneBox } from "../../services/boxService";
 import { useParams, useNavigate, Link } from "react-router";
 import { getItemsInBox } from "../../services/itemService";
-import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 // component
 const BoxDetail = () => {
     // hooks

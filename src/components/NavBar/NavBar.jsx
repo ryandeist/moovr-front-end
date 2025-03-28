@@ -85,7 +85,7 @@ const NavBar = () => {
             </div>
 
             <div
-                className={`absolute top-full left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out overflow-hidden ${isNavOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+                className={`absolute top-full left-0 w-full bg-white z-40 border-b-2 border-gray-950 transition-all duration-300 ease-in-out overflow-hidden ${isNavOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
                     }`}
             >
                 <ul className='bg-white text-center py-4 space-y-2'>

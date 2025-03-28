@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { createJob, editJob, getOneJob } from "../../services/jobService";
-import Breadcrumb from "../Breadcrumb.jsx/Breadcrumb";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 // components
 const JobForm = (props) => {
