@@ -134,7 +134,7 @@ const JobForm = (props) => {
                         />
                     </div>
                     <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingJob ? 'Edit Job' : 'Create Job'}</button>
-                    <p>{message}</p>
+                    <p className="text-red-500 justify-self-center mt-1">{message}</p>
                 </form>
             </div>
         </>
