@@ -63,7 +63,7 @@ const Breadcrumb = () => {
     });
 
     return (
-        <nav className='bg-white text-gray-600 text-xs md:text-lg p-1 px-2 rounded-md'>
+        <nav className='bg-white text-gray-600 text-xs md:text-lg p-1 px-2 rounded-md border-2 border-gray-950'>
             <ol className='list-none p-0 inline-flex'>
                 {breadcrumbItems.map((item, index) => (
                     <li key={item.to} className='flex items-center'>

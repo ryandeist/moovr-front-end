@@ -43,8 +43,8 @@ const LoginForm = () => {
     // return
     return (
         <div className='flex flex-col bg-white w-[100%] rounded-lg justify-self-center items-center'>
-            <h1 className='text-3xl font-bold pt-5'>Log In</h1>
-            <form className='mt-4 w-[80%]' autoComplete='off' onSubmit={handleSubmit}>
+            <h1 className='text-3xl font-bold pt-5 pb-2 md:text-4xl lg:text-5xl border-b-2 border-gray-400 w-[80%] text-center'>Log In</h1>
+            <form className='mt-4 w-[80%] md:text-lg' autoComplete='off' onSubmit={handleSubmit}>
                 <div className='w-[100%]'>
                     <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="username">Username:</label>
                     <input
@@ -71,9 +71,9 @@ const LoginForm = () => {
                         required
                     />
                 </div>
-                <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-500 text-white"}`} disabled={isSignUpValid()}>Log In</button>
+                <button className={`flex justify-self-center px-5 py-2 rounded-full transition-colors ${isSignUpValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isSignUpValid()}>Log In</button>
                 <p className='flex justify-self-center'>or</p>
-                <button className='flex justify-self-center bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'><Link to='/signup'>Sign Up</Link></button>
+                <button className='flex justify-self-center bg-yellow-700 hover:bg-yellow-600 text-white px-5 py-2 rounded-full'><Link to='/signup'>Sign Up</Link></button>
                 <p className="text-red-500 justify-self-center mt-1">{message}</p>
             </form>
         </div>

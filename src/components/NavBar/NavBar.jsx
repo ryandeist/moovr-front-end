@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { UserContext } from '../../contexts/UserContext';
 import { Menu, X } from 'lucide-react'
-import Logo from '../../../public/images/cardboard-box-logo.png'
+import Logo from '../../../public/images/cow-logo.png'
 
 // component
 const NavBar = () => {
@@ -47,22 +47,22 @@ const NavBar = () => {
                 <div className='flex items-center'>
                     <div>
                         <Link to='/'>
-                            <img className='w-16' src={Logo} alt="cardboard box logo" />
+                            <img className='w-16 md:w-18 lg:w-20' src={Logo} alt="cardboard box logo" />
                         </Link>
                     </div>
-                    <div className='text-3xl flex justify-self-start'>
+                    <div className='text-3xl md:text-4xl lg: text-5xlflex justify-self-start'>
                         Moovr
                     </div>
                 </div>
 
                 <div className='hidden md:flex items-center gap-2 justify-between'>
-                    <ul className='flex gap-3 flex-col md:flex-row md:justify-between'>
+                    <ul className='flex gap-3 flex-col md:flex-row md:justify-between md:text-lg lg:text-xl'>
                         {navLinks.map((item, index) => (
                             <li key={index} className='hover:text-gray-500'>
                                 {item.buttonStyle ? (
                                     <button>
                                         <Link
-                                            className='bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'
+                                            className='bg-yellow-700 hover:bg-yellow-600 text-white px-5 py-2 rounded-full'
                                             to={item.to}
                                             onClick={item.onClick ? item.onClick : undefined}
                                         >
@@ -85,7 +85,7 @@ const NavBar = () => {
             </div>
 
             <div
-                className={`absolute top-full left-0 w-full bg-white transition-all duration-300 ease-in-out overflow-hidden ${isNavOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+                className={`absolute top-full left-0 w-full bg-white z-40 transition-all duration-300 ease-in-out overflow-hidden ${isNavOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
                     }`}
             >
                 <ul className='bg-white text-center py-4 space-y-2'>
@@ -94,7 +94,7 @@ const NavBar = () => {
                             {item.buttonStyle ? (
                                 <button>
                                     <Link
-                                        className='bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-500'
+                                        className='bg-yellow-700 hover:bg-yellow-600 text-white px-5 py-2 rounded-full'
                                         to={item.to}
                                         onClick={item.onClick ? item.onClick : () => setIsNavOpen(false)}
                                     >
