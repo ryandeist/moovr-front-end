@@ -1,7 +1,7 @@
 // imports
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-import { getJobs, deleteJob } from "../../services/jobService.js";
+import { getJobs, deleteJob } from "./../../services/jobService.js";
 import Delete from "/images/delete-icon.png";
 
 // component
