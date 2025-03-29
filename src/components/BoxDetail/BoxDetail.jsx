@@ -6,6 +6,9 @@ import { getItemsInBox, deleteItem } from "../../services/itemService";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import LampIcon from "../../../public/images/lamp-icon.png";
 import Delete from "../../../public/images/delete-icon.png";
+import HeavyIcon from "../../../public/images/heavy-icon.png"
+import FragileIcon from "../../../public/images/fragile-icon.png"
+
 
 // component
 const BoxDetail = ({ openDeleteModal }) => {
@@ -22,15 +25,32 @@ const BoxDetail = ({ openDeleteModal }) => {
         const fetchBox = async () => {
             try {
                 const fetchedBox = await getOneBox(jobId, boxId);
-                setBox(fetchedBox);
                 const itemsInBox = await getItemsInBox(jobId, boxId);
-                setItems(itemsInBox)
+
+                setBox(fetchedBox);
+                setItems(itemsInBox);
+
+                const hasFragileItem = itemsInBox.some(item => item.is_fragile);
+                const hasHeavyItem = itemsInBox.some(item => item.is_heavy);
+
+                if (hasFragileItem !== fetchedBox.is_fragile) {
+                    const updatedBox = { ...fetchedBox, is_fragile: hasFragileItem };
+                    setBox(updatedBox);
+                    await updateBox(jobId, boxId, updatedBox);
+                }
+
+                if (hasHeavyItem !== fetchedBox.is_heavy) {
+                    const updatedBox = { ...fetchedBox, is_heavy: hasHeavyItem };
+                    setBox(updatedBox);
+                    await updateBox(jobId, boxId, updatedBox);
+                }
+
             } catch (err) {
                 console.log('Error Fetching Box', err);
             };
         };
         fetchBox();
-    }, [boxId, jobId]);
+    }, [boxId, jobId, items.length]);
 
     // toggle box full status and update box
     const toggleBoxFull = async () => {
@@ -83,7 +103,7 @@ const BoxDetail = ({ openDeleteModal }) => {
                             <h1 className="font-semibold">Size: </h1><p>{box.size_display}</p>
                         </div>
                         <div className="flex flex-row gap-1">
-                            <p className="font-semibold">Labels: </p>{box.is_heavy && <img className='w-5' src="" alt="" />}{box.is_fragile && <img className='w-5' src="" alt="" />}{box.box_full && <p className="text-red-600">Box Full!</p>}
+                            <p className="font-semibold my-auto">Labels: </p>{box.is_heavy && <img className='w-10' src={HeavyIcon} alt="an icon of a man lifting a heavy box" />}{box.is_fragile && <img className='w-10' src={FragileIcon} alt="a fragile item icon" />}{box.box_full && <p className="text-red-600 my-auto">Full!</p>}
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
@@ -112,12 +132,12 @@ const BoxDetail = ({ openDeleteModal }) => {
             </div>
             <div className="flex flex-col w-[90%] max-w-3xl justify-self-center bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
                 <div className='flex-row justify-start'>
-                    <Link className='flex justify-self-start md:text-xl lg:text-2xl bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl' to={`/jobs/${jobId}/${boxId}/add-item`}>Add Item</Link>
+                    <Link className={`flex justify-self-start md:text-xl lg:text-2xl py-1 px-4 rounded-xl ${box.box_full ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} to={`/jobs/${jobId}/${boxId}/add-item`}>Add Item</Link>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
-                    <img src={LampIcon} className="w-11" alt="a picture of a box" />
+                    <img src={LampIcon} className="w-11" alt="a picture of a lamp" />
                     <h1 className="mt-1 text-2xl font-bold lg:text-4xl">Items</h1>
-                    <img src={LampIcon} className="w-11" alt="a picture of a box" />
+                    <img src={LampIcon} className="w-11" alt="a picture of a lamp" />
                 </div>
                 {items.length === 0 ? (
                     <div className='flex p-2 w-[90%] max-w-3xl mx-auto'>

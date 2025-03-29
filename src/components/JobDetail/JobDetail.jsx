@@ -5,6 +5,8 @@ import { getOneJob, deleteJob } from "../../services/jobService";
 import { getBoxes } from "../../services/boxService";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import BoxIcon from "../../../public/images/cardboard-box-logo.png";
+import HeavyIcon from "../../../public/images/heavy-icon.png"
+import FragileIcon from "../../../public/images/fragile-icon.png"
 
 // component
 const JobDetail = ({ openDeleteModal }) => {
@@ -21,9 +23,12 @@ const JobDetail = ({ openDeleteModal }) => {
         const fetchJob = async () => {
             try {
                 const fetchedJob = await getOneJob(jobId);
-                setJob(fetchedJob);
                 const fetchedBoxes = await getBoxes(jobId);
-                setBoxes(fetchedBoxes);
+
+                const sortedBoxes = fetchedBoxes.sort((a, b) => a.id - b.id);
+                
+                setBoxes(sortedBoxes);
+                setJob(fetchedJob);
             } catch (err) {
                 console.log(err);
             }
@@ -116,10 +121,23 @@ const JobDetail = ({ openDeleteModal }) => {
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2 mx-auto w-[100%]">
                         {boxes.map((box) => (
                             <Link to={`/jobs/${job.id}/${box.id}`} key={box.id}><div className='flex flex-col box-content w-[100%] aspect-square bg-yellow-700 hover:bg-yellow-600 rounded-xl items-center'>
-                                <div className="my-auto" >
-                                    <h1 className='text-center text-white text-2xl font-semibold'> Box #{box.id}</h1>
-                                    <p className='text-center text-white'>{box.box_name}</p>
-                                    <p className='text-center text-white'>Size: {box.size_display}</p>
+                                <div className="my-auto gap-1 md:gap-2 flex flex-col w-[90%] items-center" >
+                                    <div>
+                                        <h1 className='text-center text-white text-2xl font-semibold'> Box #{box.id}</h1>
+                                        <p className='text-center text-white'>{box.box_name}</p>
+                                        <p className='text-center text-white'>Size: {box.size_display}</p>
+                                    </div>
+                                    {box.box_full || box.is_heavy || box.is_fragile ? (
+                                    <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] justify-between border-2 border-gray-950 rounded-xl py-1 px-2">
+                                        {box.is_heavy && <img className='w-[33%] mx-auto' src={HeavyIcon} alt="an icon of person lifting a heavy box" />}
+                                        {box.is_fragile && <img className='w-[33%] mx-auto' src={FragileIcon} alt="a fragile item icon" />}
+                                        {box.box_full && <p className="text-red-600 text-center font-semibold text-sm md:text-base lg:text-lg my-auto mx-auto w-[33%]">Full!</p>}
+                                    </div>
+                                    ) : (
+                                        <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] justify-between border-2 border-gray-950 rounded-xl py-1 px-2">
+                                            <p className="text-center font-semibold text-sm md:text-base lg:text-lg my-auto w-[100%]">No Labels</p>
+                                        </div>
+                                    )}
                                 </div>
                             </div></Link>
                         ))}
