@@ -1,8 +1,8 @@
 // imports
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { getOneJob, deleteJob } from "../../services/jobService";
-import { getBoxes } from "../../services/boxService";
+import { getOneJob, deleteJob } from "../../services/jobService.js";
+import { getBoxes } from "../../services/boxService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import BoxIcon from "/images/cardboard-box-logo.png";
 import HeavyIcon from "/images/heavy-icon.png";

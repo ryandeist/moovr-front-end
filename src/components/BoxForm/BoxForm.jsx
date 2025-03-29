@@ -1,7 +1,7 @@
 // imports 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import { createBox, getOneBox, updateBox } from "../../services/boxService";
+import { createBox, getOneBox, updateBox } from "../../services/boxService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 const BoxForm = (props) => {

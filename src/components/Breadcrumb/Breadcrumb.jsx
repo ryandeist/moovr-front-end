@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
 import { getOneJob } from "../../services/jobService.js";
-import { getOneBox } from "../../services/boxService";
+import { getOneBox } from "../../services/boxService.js";
 import { getOneItemInBox } from "../../services/itemService.js";
 
 const Breadcrumb = () => {

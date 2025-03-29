@@ -1,8 +1,8 @@
 // imports
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
-import { deleteBox, getOneBox, updateBox } from "../../services/boxService";
-import { getItemsInBox, deleteItem } from "../../services/itemService";
+import { deleteBox, getOneBox, updateBox } from "../../services/boxService.js";
+import { getItemsInBox, deleteItem } from "../../services/itemService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import LampIcon from "/images/lamp-icon.png";
 import Delete from "/images/delete-icon.png";

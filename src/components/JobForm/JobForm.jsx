@@ -1,7 +1,7 @@
 // imports
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { createJob, editJob, getOneJob } from "../../services/jobService";
+import { createJob, editJob, getOneJob } from "../../services/jobService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 // components

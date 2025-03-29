@@ -1,7 +1,7 @@
 // imports
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router";
-import { deleteItem, getOneItemInBox } from "../../services/itemService";
+import { deleteItem, getOneItemInBox } from "../../services/itemService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import HeavyIcon from "/images/heavy-icon.png";
 import FragileIcon from "/images/fragile-icon.png";

@@ -1,8 +1,8 @@
 // imports
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { createItem, editItem, getOneItemInBox } from "../../services/itemService";
-import { getBoxes } from "../../services/boxService";
+import { createItem, editItem, getOneItemInBox } from "../../services/itemService.js";
+import { getBoxes } from "../../services/boxService.js";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 
