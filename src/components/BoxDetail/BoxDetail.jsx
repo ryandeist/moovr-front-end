@@ -160,7 +160,7 @@ const BoxDetail = ({ openDeleteModal }) => {
                                                 openDeleteModal(`Are you sure you want to remove ${item.name} from the box?`, () => handleDeleteItem(jobId, boxId, item.id))
                                             }}
                                         >
-                                            <img className='my-auto w-8 opacity-50 hover:opacity-100 relative' src={Delete} alt="Delete Icon" />
+                                            <img className='my-auto w-8 md:w-10 lg:w-12 opacity-50 hover:opacity-100 relative' src={Delete} alt="Delete Icon" />
                                         </button>
                                     </div>
                                 </div>
