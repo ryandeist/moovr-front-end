@@ -1,9 +1,8 @@
 // imports
 import { useState, useEffect } from "react";
-import { getJobs } from "../../services/jobService";
+import { getJobs, deleteJob } from "../../services/jobService";
 import { Link } from "react-router";
 import Delete from "/images/delete-icon.png";
-import { deleteJob } from "../../services/jobService";
 
 // component
 const JobList = ({ openDeleteModal }) => {
