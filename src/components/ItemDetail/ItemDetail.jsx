@@ -34,9 +34,8 @@ const ItemDetail = () => {
         } catch (err) {
             console.log('Error Deleting Item', err);
         };
+    };
 
-    }
-    console.log(item);
     if (!item) {
         return <h1>Loading...</h1>
     }

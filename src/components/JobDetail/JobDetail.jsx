@@ -70,7 +70,7 @@ const JobDetail = ({ openDeleteModal }) => {
             <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center ">
                 <Breadcrumb />
             </div>
-            <div className="flex bg-white w-[90%] border-2 border-gray-950 max-w-3xl mt-5 justify-self-center flex-col p-2 gap-3 shadow-lg rounded-lg sm:text-2xl">
+            <div className="flex bg-white w-[90%] md:text-xl lg:text-2xl border-2 border-gray-950 max-w-3xl mt-5 justify-self-center flex-col p-2 gap-3 shadow-lg rounded-lg">
                 <div className="flex flex-row justify-between">
                     <div>
                         <div className="flex flex-row gap-1">
@@ -83,7 +83,7 @@ const JobDetail = ({ openDeleteModal }) => {
                             <h2 className="font-semibold">Total Boxes:</h2><p>{boxes.length}</p>
                         </div>
                     </div>
-                    <div className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2 ">
                         <Link to={`/jobs/${job.id}/edit-job`}><h1 className='text-center bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl'>Edit</h1></Link>
                         <button onClick={() => openDeleteModal(`Are you sure you want to delete ${job.customer_name}?`, () => handleDelete(job.id))}>
                             <h1 className='bg-red-600 hover:bg-red-500 text-white py-1 px-4 rounded-xl text-center'>Delete</h1>
@@ -100,14 +100,13 @@ const JobDetail = ({ openDeleteModal }) => {
                 </div>
             </div>
             <div className="flex flex-col w-[90%] max-w-3xl justify-self-center bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
-
                 <div className='flex-row justify-start'>
-                    <Link className='flex justify-self-start bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl' to={`/jobs/${job.id}/add-box`}>Add Box</Link>
+                    <Link className='flex justify-self-start md:text-xl lg:text-2xl bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl' to={`/jobs/${job.id}/add-box`}>Add Box</Link>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
-                    <img src={BoxIcon} className="w-11" alt="" />
+                    <img src={BoxIcon} className="w-11" alt="a picture of a box" />
                     <h1 className="mt-1 text-2xl font-bold lg:text-4xl">Boxes</h1>
-                    <img src={BoxIcon} className="w-11" alt="" />
+                    <img src={BoxIcon} className="w-11" alt="a picture of a box" />
                 </div>
                 {boxes.length === 0 ? (
                     <div className='flex p-2 w-[90%] max-w-3xl mx-auto'>
