@@ -1,4 +1,4 @@
-import api from '../services/apiService';
+import api from "../services/apiService";
 
 export const getJobs = async () => {
     try {

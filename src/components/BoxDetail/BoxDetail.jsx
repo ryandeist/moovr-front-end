@@ -1,14 +1,13 @@
 // imports
 import { useState, useEffect } from "react";
-import { deleteBox, getOneBox, updateBox } from "../../services/boxService";
 import { useParams, useNavigate, Link } from "react-router";
+import { deleteBox, getOneBox, updateBox } from "../../services/boxService";
 import { getItemsInBox, deleteItem } from "../../services/itemService";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
-import LampIcon from "../../../public/images/lamp-icon.png";
-import Delete from "../../../public/images/delete-icon.png";
-import HeavyIcon from "../../../public/images/heavy-icon.png"
-import FragileIcon from "../../../public/images/fragile-icon.png"
-
+import LampIcon from "/images/lamp-icon.png";
+import Delete from "/images/delete-icon.png";
+import HeavyIcon from "/images/heavy-icon.png"
+import FragileIcon from "/public/images/fragile-icon.png"
 
 // component
 const BoxDetail = ({ openDeleteModal }) => {
@@ -46,7 +45,7 @@ const BoxDetail = ({ openDeleteModal }) => {
                 }
 
             } catch (err) {
-                console.log('Error Fetching Box', err);
+                console.log("Error Fetching Box", err);
             };
         };
         fetchBox();
@@ -56,12 +55,12 @@ const BoxDetail = ({ openDeleteModal }) => {
     const toggleBoxFull = async () => {
         try {
             const updatedBox = { ...box, box_full: !box.box_full };
-            setBox(updatedBox); // Optimistic UI update
+            setBox(updatedBox);
 
             await updateBox(jobId, boxId, updatedBox);
         } catch (err) {
             console.log("Error updating box status", err);
-        }
+        };
     };
 
     // handler functions
@@ -70,7 +69,7 @@ const BoxDetail = ({ openDeleteModal }) => {
             deleteBox(jobId, boxId);
             navigate(`/jobs/${jobId}`);
         } catch (err) {
-            console.log(`Error Deleting Box.`, err);
+            console.log("Error Deleting Box.", err);
         };
     };
 
@@ -79,7 +78,7 @@ const BoxDetail = ({ openDeleteModal }) => {
             await deleteItem(jobId, boxId, itemId);
             setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
         } catch (err) {
-            console.log('Error Deleting Item', err);
+            console.log("Error Deleting Item", err);
         };
     };
 
@@ -103,20 +102,20 @@ const BoxDetail = ({ openDeleteModal }) => {
                             <h1 className="font-semibold">Size: </h1><p>{box.size_display}</p>
                         </div>
                         <div className="flex flex-row gap-1">
-                            <p className="font-semibold my-auto">Labels: </p>{box.is_heavy && <img className='w-10' src={HeavyIcon} alt="an icon of a man lifting a heavy box" />}{box.is_fragile && <img className='w-10' src={FragileIcon} alt="a fragile item icon" />}{box.box_full && <p className="text-red-600 my-auto">Full!</p>}
+                            <p className="font-semibold my-auto">Labels: </p>{box.is_heavy && <img className="w-10" src={HeavyIcon} alt="an icon of a man lifting a heavy box" />}{box.is_fragile && <img className="w-10" src={FragileIcon} alt="a fragile item icon" />}{box.box_full && <p className="text-red-600 my-auto">Full!</p>}
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <Link to={`/jobs/${jobId}/${box.id}/edit-box`}><h1 className='text-center bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl'>Edit</h1></Link>
+                        <Link to={`/jobs/${jobId}/${box.id}/edit-box`}><h1 className="text-center bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl">Edit</h1></Link>
                         <button onClick={() => openDeleteModal(`Are you sure you want to unpack ${box.box_name}?`, () => handleDeleteBox(box.id))}>
-                            <h1 className='bg-red-600 hover:bg-red-500 text-white py-1 px-4 rounded-xl text-center'>Unpack</h1>
+                            <h1 className="bg-red-600 hover:bg-red-500 text-white py-1 px-4 rounded-xl text-center cursor-pointer">Unpack</h1>
                         </button>
                     </div>
                 </div>
                 <div className="flex flex-col gap-1">
                     <div className="flex flex-row">
                         <h1 className="font-semibold w-[50%]">Description:</h1>
-                        <div className='w-[50%] flex justify-end'>
+                        <div className="w-[50%] flex justify-end">
                             <label htmlFor="boxFullCheckbox" className=" mr-2 cursor-pointer">Box Full</label>
                             <input
                                 type="checkbox"
@@ -131,7 +130,7 @@ const BoxDetail = ({ openDeleteModal }) => {
                 </div>
             </div>
             <div className="flex flex-col w-[90%] max-w-3xl justify-self-center bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
-                <div className='flex-row justify-start'>
+                <div className="flex-row justify-start">
                     <Link className={`flex justify-self-start md:text-xl lg:text-2xl py-1 px-4 rounded-xl ${box.box_full ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} to={`/jobs/${jobId}/${boxId}/add-item`}>Add Item</Link>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
@@ -140,27 +139,27 @@ const BoxDetail = ({ openDeleteModal }) => {
                     <img src={LampIcon} className="w-11" alt="a picture of a lamp" />
                 </div>
                 {items.length === 0 ? (
-                    <div className='flex p-2 w-[90%] max-w-3xl mx-auto'>
-                        <p className='mx-auto font-semibold'>This box is empty. Add an item to this box.</p>
+                    <div className="flex p-2 w-[90%] max-w-3xl mx-auto">
+                        <p className="mx-auto font-semibold">This box is empty. Add an item to this box.</p>
                     </div>
                 ) : (
-                    <div className='flex flex-col w-[90%] max-w-3xl mt-3 mx-auto pb-3 gap-y-3'>
+                    <div className="flex flex-col w-[90%] max-w-3xl mt-3 mx-auto pb-3 gap-y-3">
                         {items.map((item) => (
                             <Link key={item.id} to={`/jobs/${jobId}/${boxId}/${item.id}`}>
-                                <div className='flex justify-between p-2 bg-yellow-700 hover:bg-yellow-600 text-white rounded-xl'>
-                                    <div className='ml-2 md:ml-5 my-auto'>
-                                        <h2 className='font-semibold md:text-2xl lg:text-3xl'>{item.name}</h2>
+                                <div className="flex justify-between p-2 bg-yellow-700 hover:bg-yellow-600 text-white rounded-xl">
+                                    <div className="ml-2 md:ml-5 my-auto">
+                                        <h2 className="font-semibold md:text-2xl lg:text-3xl">{item.name}</h2>
                                     </div>
-                                    <div className='flex flex-row items-end my-auto gap-2 mr-2 md:mr-5'>
+                                    <div className="flex flex-row items-end my-auto gap-2 mr-2 md:mr-5">
                                         <button
-                                            className='my-auto'
+                                            className="my-auto"
                                             onClick={(evt) => {
                                                 evt.preventDefault();
                                                 evt.stopPropagation();
                                                 openDeleteModal(`Are you sure you want to remove ${item.name} from the box?`, () => handleDeleteItem(jobId, boxId, item.id))
                                             }}
                                         >
-                                            <img className='my-auto w-8 md:w-10 lg:w-12 opacity-50 hover:opacity-100 relative' src={Delete} alt="Delete Icon" />
+                                            <img className="my-auto w-8 md:w-10 lg:w-12 opacity-50 hover:opacity-100 relative" src={Delete} alt="Delete Icon" />
                                         </button>
                                     </div>
                                 </div>

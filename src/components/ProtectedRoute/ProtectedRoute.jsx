@@ -1,8 +1,8 @@
 // imports
-import { Navigate } from 'react-router';
-import { jwtDecode } from 'jwt-decode';
-import api from '../../services/apiService';
-import { useState, useEffect } from 'react';
+import { Navigate } from "react-router";
+import { jwtDecode } from "jwt-decode";
+import api from "../../services/apiService";
+import { useState, useEffect } from "react";
 
 // this component checks and passes token authorization to protected routes.
 const ProtectedRoute = ({ children }) => {
@@ -17,14 +17,14 @@ const ProtectedRoute = ({ children }) => {
     }, []);
 
     const refreshToken = async () => {
-        const refreshToken = localStorage.getItem('refresh');
+        const refreshToken = localStorage.getItem("refresh");
 
         try {
-            const res = await api.post('/api/token/refresh/', {
+            const res = await api.post("/api/token/refresh/", {
                 refresh: refreshToken,
             });
             if (res.status === 200) {
-                localStorage.setItem('access', res.data.access);
+                localStorage.setItem("access", res.data.access);
                 setIsAuthorized(true);
             } else {
                 setIsAuthorized(false);
@@ -36,7 +36,7 @@ const ProtectedRoute = ({ children }) => {
     };
 
     const needTokenRefresh = async () => {
-        const token = localStorage.getItem('access');
+        const token = localStorage.getItem("access");
         if (!token) {
             setIsAuthorized(false);
             return;
@@ -57,7 +57,8 @@ const ProtectedRoute = ({ children }) => {
         return <div>Loading...</div>
     };
 
-    return isAuthorized ? children : <Navigate to='/' />
+    return isAuthorized ? children : <Navigate to="/" />
 };
 
+// export
 export default ProtectedRoute;

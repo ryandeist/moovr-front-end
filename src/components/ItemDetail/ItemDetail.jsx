@@ -1,27 +1,27 @@
 // imports
-import { useState, useEffect } from "react"
-import { useParams, Link, useNavigate } from "react-router"
-import { deleteItem, getOneItemInBox } from "../../services/itemService"
-import Breadcrumb from "../Breadcrumb/Breadcrumb"
-import HeavyIcon from "../../../public/images/heavy-icon.png"
-import FragileIcon from "../../../public/images/fragile-icon.png"
+import { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router";
+import { deleteItem, getOneItemInBox } from "../../services/itemService";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import HeavyIcon from "/images/heavy-icon.png";
+import FragileIcon from "/images/fragile-icon.png";
 
 // component
-const ItemDetail = ({openDeleteModal}) => {
+const ItemDetail = ({ openDeleteModal }) => {
     // hooks
-    const { jobId, boxId, itemId } = useParams()
-    const navigate = useNavigate()
+    const { jobId, boxId, itemId } = useParams();
+    const navigate = useNavigate();
 
     // state
-    const [item, setItem] = useState(null)
+    const [item, setItem] = useState(null);
 
 
-    // get item
+    // get item to show
     useEffect(() => {
         const fetchItem = async () => {
             try {
-                const fetchedItem = await getOneItemInBox(jobId, boxId, itemId)
-                setItem(fetchedItem)
+                const fetchedItem = await getOneItemInBox(jobId, boxId, itemId);
+                setItem(fetchedItem);
             } catch (err) {
                 console.log(err);
             }
@@ -29,18 +29,20 @@ const ItemDetail = ({openDeleteModal}) => {
         fetchItem();
     }, [jobId, boxId, itemId]);
 
+    // handler function
     const handleDelete = async () => {
         try {
-            await deleteItem(jobId, boxId, itemId)
-            navigate(`/jobs/${jobId}/${boxId}`)
+            await deleteItem(jobId, boxId, itemId);
+            navigate(`/jobs/${jobId}/${boxId}`);
         } catch (err) {
-            console.log('Error Deleting Item', err);
+            console.log("Error Deleting Item", err);
         };
     };
 
+    // returns
     if (!item) {
         return <h1>Loading...</h1>
-    }
+    };
 
     return (
         <>
@@ -54,13 +56,13 @@ const ItemDetail = ({openDeleteModal}) => {
                             <h1 className="font-semibold">Item Name: </h1><p>{item.name}</p>
                         </div>
                         <div className="flex flex-row gap-1">
-                            <p className="font-semibold my-auto">Labels: </p>{item.is_heavy && <img className='w-10' src={HeavyIcon} alt="an icon of a man lifting a heavy box" />}{item.is_fragile && <img className='w-10' src={FragileIcon} alt="a fragile item icon" />}
+                            <p className="font-semibold my-auto">Labels: </p>{item.is_heavy && <img className="w-10" src={HeavyIcon} alt="an icon of a man lifting a heavy box" />}{item.is_fragile && <img className="w-10" src={FragileIcon} alt="a fragile item icon" />}
                         </div>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <Link to={`/jobs/${jobId}/${boxId}/${item.id}/edit-item`}><h1 className='text-center bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl'>Edit</h1></Link>
+                        <Link to={`/jobs/${jobId}/${boxId}/${item.id}/edit-item`}><h1 className="text-center bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl">Edit</h1></Link>
                         <button onClick={() => openDeleteModal(`Are you sure you want to remove ${item.name}?`, () => handleDelete(item.id))}>
-                            <h1 className='bg-red-600 hover:bg-red-500 text-white py-1 px-4 rounded-xl text-center'>Remove</h1>
+                            <h1 className="bg-red-600 hover:bg-red-500 text-white py-1 px-4 rounded-xl text-center cursor-pointer">Remove</h1>
                         </button>
                     </div>
                 </div>
@@ -73,6 +75,7 @@ const ItemDetail = ({openDeleteModal}) => {
             </div>
         </>
     )
-}
+};
 
-export default ItemDetail
+// export
+export default ItemDetail;

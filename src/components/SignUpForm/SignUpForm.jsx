@@ -23,7 +23,7 @@ const SignUpForm = () => {
     const handleChange = (evt) => {
         setMessage("");
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
-    }
+    };
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
@@ -34,8 +34,8 @@ const SignUpForm = () => {
             navigate("/");
         } catch (err) {
             setMessage(err.message);
-        }
-    }
+        };
+    };
 
     // predicate function
     const isSignUpValid = () => {
@@ -49,13 +49,13 @@ const SignUpForm = () => {
 
     // return
     return (
-        <div className='flex flex-col border-2 border-e-gray-950 bg-white w-[90%] shadow-lg h-auto pb-5 rounded-lg justify-self-center items-center mt-5 max-w-3xl'>
-            <h1 className='text-3xl md:text-4xl font-bold pt-5 pb-2 border-b-2 border-gray-400 w-[80%] text-center'>Sign Up</h1>
-            <form className='mt-4 w-[80%] md:text-lg' autoComplete='off' onSubmit={handleSubmit}>
-                <div className='w-[100%]'>
-                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="username">Username:</label>
+        <div className="flex flex-col border-2 border-e-gray-950 bg-white w-[90%] shadow-lg h-auto pb-5 rounded-lg justify-self-center items-center mt-5 max-w-3xl">
+            <h1 className="text-3xl md:text-4xl font-bold pt-5 pb-2 border-b-2 border-gray-400 w-[80%] text-center">Sign Up</h1>
+            <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
+                <div className="w-[100%]">
+                    <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="username">Username:</label>
                     <input
-                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                        className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         name="username"
                         id="username"
@@ -66,10 +66,10 @@ const SignUpForm = () => {
                     />
                     <p className="text-xs mb-5">*Letters, Numbers, and @,_,.,- only</p>
                 </div>
-                <div className='w-[100%]'>
-                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="password">Password:</label>
+                <div className="w-[100%]">
+                    <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="password">Password:</label>
                     <input
-                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                        className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="password"
                         name="password"
                         id="password"
@@ -80,10 +80,10 @@ const SignUpForm = () => {
                     />
                     <p className="text-xs mb-5">*Must be greater then six characters</p>
                 </div>
-                <div className='w-[100%]'>
-                    <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="confirm">Confirm Password:</label>
+                <div className="w-[100%]">
+                    <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="confirm">Confirm Password:</label>
                     <input
-                        className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                        className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         type="password"
                         id="confirm"
                         name="passwordConfirm"
@@ -102,4 +102,4 @@ const SignUpForm = () => {
 };
 
 // exports
-export default SignUpForm
+export default SignUpForm;

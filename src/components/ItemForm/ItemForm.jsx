@@ -1,3 +1,4 @@
+// imports
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { createItem, editItem, getOneItemInBox } from "../../services/itemService";
@@ -22,7 +23,7 @@ const ItemForm = (props) => {
     const { name, description, is_fragile, is_heavy, box } = formData;
     const [message, setMessage] = useState("");
     const [boxes, setBoxes] = useState([]);
-    const [defaultBox, setDefaultBox] = useState()
+    const [defaultBox, setDefaultBox] = useState();
 
     // fetch boxes for select
     useEffect(() => {
@@ -45,10 +46,10 @@ const ItemForm = (props) => {
         if (props.isEditingItem && itemId) {
             const fetchItem = async () => {
                 try {
-                    const fetchedItem = await getOneItemInBox(jobId, boxId, itemId)
-                    setFormData(fetchedItem)
+                    const fetchedItem = await getOneItemInBox(jobId, boxId, itemId);
+                    setFormData(fetchedItem);
                 } catch (err) {
-                    console.log('Error fetching Item to update.', err)
+                    console.log("Error fetching Item to update.", err);
                 }
             }
             fetchItem();
@@ -71,11 +72,11 @@ const ItemForm = (props) => {
         evt.preventDefault();
         if (props.isEditingItem) {
             try {
-                const editedItem = await editItem(jobId, boxId, itemId, formData)
-                navigate(`/jobs/${jobId}/${formData.box}/${itemId}`)
-                return console.log(editedItem)
+                const editedItem = await editItem(jobId, boxId, itemId, formData);
+                navigate(`/jobs/${jobId}/${formData.box}/${itemId}`);
+                return console.log(editedItem);
             } catch (err) {
-                console.log('Error updating item.', err)
+                console.log("Error updating item.", err);
             }
         } else {
             try {
@@ -85,7 +86,7 @@ const ItemForm = (props) => {
             } catch (err) {
                 setMessage(err.message);
             };
-        }
+        };
     };
 
     // predicate function
@@ -95,23 +96,23 @@ const ItemForm = (props) => {
         );
     };
 
+    // returns
     if (!defaultBox) {
         return <h1>Loading...</h1>
-    }
+    };
 
-    // return
     return (
         <>
             <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
                 <Breadcrumb />
             </div>
-            <div className='flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg justify-self-center items-center pt-5 mt-5 max-w-3xl md:pb-5'>
-                <h1 className='text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2'>{props.isEditingItem ? 'Edit Item' : 'Add Item'}</h1>
-                <form className='mt-4 w-[80%] md:text-lg' autoComplete='off' onSubmit={handleSubmit}>
+            <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg justify-self-center items-center pt-5 mt-5 max-w-3xl md:pb-5">
+                <h1 className="text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2">{props.isEditingItem ? "Edit Item" : "Add Item"}</h1>
+                <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
                     <div>
-                        <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="name">Item Name: </label>
+                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="name">Item Name: </label>
                         <input
-                            className='shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter Item Name"
                             maxLength={50}
                             type="text"
@@ -123,9 +124,9 @@ const ItemForm = (props) => {
                         />
                     </div>
                     <div>
-                        <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="description">Item Description: </label>
+                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="description">Item Description: </label>
                         <textarea
-                            className='resize-none shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className="resize-none shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Enter Item Description"
                             rows={4}
                             maxLength={250}
@@ -137,7 +138,7 @@ const ItemForm = (props) => {
                     </div>
                     <div className="flex flex-row">
                         <div className="flex flex-row items-center gap-4 w-[50%]">
-                            <label className='block text-gray-700 text-l font-bold my-auto' htmlFor="is_fragile">Fragile: </label>
+                            <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_fragile">Fragile: </label>
                             <input
                                 type="checkbox"
                                 id="is_fragile"
@@ -147,7 +148,7 @@ const ItemForm = (props) => {
                             />
                         </div>
                         <div className="flex flex-row items-center gap-4 w-[50%]">
-                            <label className='block text-gray-700 text-l font-bold my-auto' htmlFor="is_heavy">Heavy: </label>
+                            <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_heavy">Heavy: </label>
                             <input
                                 type="checkbox"
                                 id="is_heavy"
@@ -158,9 +159,9 @@ const ItemForm = (props) => {
                         </div>
                     </div>
                     <div>
-                        <label className='block text-gray-700 text-l font-bold mb-2' htmlFor="box">Box: </label>
+                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="box">Box: </label>
                         <select
-                            className='shadow border rounded w-full py-2 px-3 mb-1 text-gray-700 focus:outline-none focus:shadow-outline'
+                            className="shadow border rounded w-full py-2 px-3 mb-1 text-gray-700 focus:outline-none focus:shadow-outline"
                             name="box"
                             id="box"
                             onChange={handleChange}
@@ -177,7 +178,7 @@ const ItemForm = (props) => {
                         </select>
                     </div>
 
-                    <button className={`flex justify-self-center px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? 'Edit Item' : 'Create Item'}</button>
+                    <button className={`flex justify-self-center px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? "Edit Item" : "Create Item"}</button>
                     <p className="text-red-500 justify-self-center mt-1">{message}</p>
                 </form>
             </div>
@@ -186,4 +187,4 @@ const ItemForm = (props) => {
 };
 
 // exports
-export default ItemForm
+export default ItemForm;

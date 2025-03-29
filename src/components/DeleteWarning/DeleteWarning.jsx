@@ -1,6 +1,8 @@
+// component
 const DeleteWarning = ({ show, message, onConfirm, onCancel }) => {
     if (!show) return null;
 
+    // returns
     return (
         <div className="fixed inset-0 bg-opacity-100 flex justify-center items-center backdrop-blur-xs">
             <div className="bg-white p-5 rounded-xl border-4 shadow-lg text-center w-[90%] max-w-md">
@@ -18,4 +20,5 @@ const DeleteWarning = ({ show, message, onConfirm, onCancel }) => {
     )
 };
 
+//export
 export default DeleteWarning;

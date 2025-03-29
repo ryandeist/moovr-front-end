@@ -28,7 +28,7 @@ export const createItem = async (jobId, boxId, formData) => {
     } catch (err) {
         console.log(`Error creating item`, err);
     };
-}
+};
 
 export const deleteItem = async (jobId, boxId, itemId) => {
     try {
