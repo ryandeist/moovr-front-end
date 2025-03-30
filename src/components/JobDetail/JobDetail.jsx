@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import { getOneJob, deleteJob } from "../../services/jobService.js";
 import { getBoxes } from "../../services/boxService.js";
+import { parseISO, isValid } from "date-fns";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import BoxIcon from "/images/cardboard-box-logo.png";
 import HeavyIcon from "/images/heavy-icon.png";
@@ -47,13 +48,18 @@ const JobDetail = ({ openDeleteModal }) => {
     };
 
     // Function to format date as MM/DD/YY
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year: "2-digit"
-        });
+    const formatDate = (dateInput) => {
+        if (!dateInput) return "";
+
+        const date = (dateInput instanceof Date) ? dateInput : parseISO(dateInput);
+
+        return isValid(date)
+            ? date.toLocaleDateString("en-US", {
+                month: "2-digit",
+                day: "2-digit",
+                year: "2-digit"
+            })
+            : "Invalid Date";
     };
 
     // check if job is late

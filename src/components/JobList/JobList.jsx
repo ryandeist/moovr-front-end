@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { getJobs, deleteJob } from "../../services/jobService.js";
+import { parseISO, isValid } from "date-fns";
 import Delete from "/images/delete-icon.png";
 
 // component
@@ -14,23 +15,38 @@ const JobList = ({ openDeleteModal }) => {
         const fetchJobs = async () => {
             try {
                 const jobs = await getJobs();
-                const sortedJobs = jobs.sort((a, b) => new Date(a.date) - new Date(b.date));
+                const sortedJobs = jobs
+                    .map((job) => {
+                        const dateString = typeof job.date === "string" ? job.date : null;
+                        const parsedDate = dateString ? parseISO(dateString) : null;
+
+                        return {
+                            ...job,
+                            date: parsedDate && isValid(parsedDate) ? parsedDate : null
+                        };
+                    })
+                    .sort((a, b) => a.date - b.date); // Sort by date
                 setJobs(sortedJobs);
             } catch (err) {
                 console.log(err);
             }
-        }
+        };
         fetchJobs();
     }, []);
 
     // Function to format date as MM/DD/YY
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString("en-US", {
-            month: "2-digit",
-            day: "2-digit",
-            year: "2-digit"
-        });
+    const formatDate = (dateInput) => {
+        if (!dateInput) return "";
+
+        const date = (dateInput instanceof Date) ? dateInput : parseISO(dateInput);
+
+        return isValid(date)
+            ? date.toLocaleDateString("en-US", {
+                month: "2-digit",
+                day: "2-digit",
+                year: "2-digit"
+            })
+            : "Invalid Date";
     };
 
     // handle delete
@@ -55,12 +71,12 @@ const JobList = ({ openDeleteModal }) => {
             <div className="flex flex-col w-[100%] max-w-3xl gap-y-3">
                 {jobs.length === 0 ? (
                     <div className="flex p-2 w-[90%] max-w-3xl mx-auto">
-                        <p className="mx-auto font-semibold">This box is empty. Add an item to this box.</p>
+                        <p className="mx-auto font-semibold">You have no active jobs. Add a job to get started.</p>
                     </div>
                 ) : (
                     <div className="flex flex-col w-[100%] max-w-3xl pb-3 gap-y-3">
                         {jobs.map((job) => {
-                            const jobDate = new Date(job.date);
+                            const jobDate = job.date ? new Date(job.date) : new Date();
                             const today = new Date();
 
                             const isOverdue = jobDate < today;

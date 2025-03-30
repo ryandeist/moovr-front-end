@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { createJob, editJob, getOneJob } from "../../services/jobService.js";
 import DatePicker from "react-datepicker";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
@@ -18,7 +18,7 @@ const JobForm = (props) => {
         customer_name: "",
         start_location: "",
         end_location: "",
-        date: "",
+        date: null,
     });
     const { customer_name, start_location, end_location, date } = formData;
 
@@ -30,7 +30,8 @@ const JobForm = (props) => {
             const fetchJob = async () => {
                 try {
                     const job = await getOneJob(jobId);
-                    setFormData(job);
+
+                    setFormData({...job, date: job.date ? parseISO(job.date) : null});
                 } catch (err) {
                     console.log(err);
                 }
@@ -46,16 +47,23 @@ const JobForm = (props) => {
     };
 
     const handleDateChange = (date) => {
-        setFormData({ ...formData, date: format(date, "yyyy-MM-dd") });
-
+        setFormData({
+            ...formData,
+            date: date,
+        });
     };
 
     const handleSubmit = async (evt) => {
         evt.preventDefault();
 
+        const jobData = {
+            ...formData,
+            date: date ? format(formData.date, "yyyy-MM-dd") : null,
+        }
+
         if (props.isEditingJob) {
             try {
-                const editedJob = await editJob(jobId, formData);
+                const editedJob = await editJob(jobId, jobData);
                 navigate(`/jobs/${jobId}`);
                 return console.log(editedJob);
             } catch (err) {
@@ -63,7 +71,7 @@ const JobForm = (props) => {
             };
         } else {
             try {
-                const newJob = await createJob(formData);
+                const newJob = await createJob(jobData);
                 navigate("/jobs");
                 console.log(newJob);
             } catch (err) {
