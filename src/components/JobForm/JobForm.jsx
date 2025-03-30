@@ -88,7 +88,7 @@ const JobForm = (props) => {
             <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
-            <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg items-center pt-5 mt-5 max-w-3xl md:pb-5">
+            <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg items-center py-5 mt-5 max-w-3xl md:pb-5">
                 <h1 className="text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2">{props.isEditingJob ? "Edit Job" : "Add Job"}</h1>
                 <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
                     <div>
