@@ -77,7 +77,7 @@ const JobDetail = ({ openDeleteModal }) => {
 
     // return
     return (
-        <div className="flex flex-col w-[100%] max-w-3xl items-center">
+        <div className="flex flex-col w-[100%] max-w-3xl mx-auto items-center">
             <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
