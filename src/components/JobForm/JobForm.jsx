@@ -134,7 +134,7 @@ const JobForm = (props) => {
                         <DatePicker
                             selected={formData.date}
                             onChange={handleDateChange}
-                            dateFormat="MM-dd-yyyy"
+                            dateFormat="yyyy-MM-dd"
                             className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholderText="Select a date"
                         />
