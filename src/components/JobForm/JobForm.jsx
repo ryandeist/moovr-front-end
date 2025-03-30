@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { createJob, editJob, getOneJob } from "../../services/jobService.js";
 import DatePicker from "react-datepicker";
+import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
@@ -45,7 +46,8 @@ const JobForm = (props) => {
     };
 
     const handleDateChange = (date) => {
-        setFormData({ ...formData, date });
+        setFormData({ ...formData, date: format(date, "yyyy-MM-dd") });
+
     };
 
     const handleSubmit = async (evt) => {
@@ -63,7 +65,7 @@ const JobForm = (props) => {
             try {
                 const newJob = await createJob(formData);
                 navigate("/jobs");
-                return console.log(newJob);
+                console.log(newJob);
             } catch (err) {
                 setMessage(err.message);
             };
@@ -134,7 +136,7 @@ const JobForm = (props) => {
                         <DatePicker
                             selected={formData.date}
                             onChange={handleDateChange}
-                            dateFormat="yyyy-MM-dd"
+                            dateFormat="MM-dd-yyyy"
                             className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholderText="Select a date"
                         />
