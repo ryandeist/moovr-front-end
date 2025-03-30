@@ -7,7 +7,7 @@ import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import LampIcon from "/images/lamp-icon.png";
 import Delete from "/images/delete-icon.png";
 import HeavyIcon from "/images/heavy-icon.png"
-import FragileIcon from "/public/images/fragile-icon.png"
+import FragileIcon from "/images/fragile-icon.png"
 
 // component
 const BoxDetail = ({ openDeleteModal }) => {
@@ -88,11 +88,11 @@ const BoxDetail = ({ openDeleteModal }) => {
 
     // return
     return (
-        <>
-            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+        <div className="flex flex-col w-[100%] rounded-lg items-center">
+            <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
-            <div className="flex flex-col md:text-xl lg:text-2xl bg-white w-[90%] border-2 border-gray-950 max-w-3xl mt-5 justify-self-center p-2 gap-3 shadow-lg rounded-lg">
+            <div className="flex flex-col md:text-xl lg:text-2xl bg-white w-[90%] border-2 border-gray-950 max-w-3xl mt-5 p-2 gap-3 shadow-lg rounded-lg">
                 <div className="flex flex-row justify-between border-b-2 pb-2 border-gray-400">
                     <div>
                         <div className="flex flex-row gap-1">
@@ -115,14 +115,14 @@ const BoxDetail = ({ openDeleteModal }) => {
                 <div className="flex flex-col gap-1">
                     <div className="flex flex-row">
                         <h1 className="font-semibold w-[50%]">Description:</h1>
-                        <div className="w-[50%] flex justify-end">
-                            <label htmlFor="boxFullCheckbox" className=" mr-2 cursor-pointer">Box Full</label>
+                        <div className="w-[50%] flex justify-end items-center">
+                            <label htmlFor="boxFullCheckbox" className=" mr-2 cursor-pointer">Box Full: </label>
                             <input
                                 type="checkbox"
                                 id="boxFullCheckbox"
                                 checked={box.box_full}
                                 onChange={toggleBoxFull}
-                                className="cursor-pointer md:w-4 lg:w-5"
+                                className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
                             />
                         </div>
                     </div>
@@ -130,8 +130,8 @@ const BoxDetail = ({ openDeleteModal }) => {
                 </div>
             </div>
             <div className="flex flex-col w-[90%] max-w-3xl justify-self-center bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
-                <div className="flex-row justify-start">
-                    <Link className={`flex justify-self-start md:text-xl lg:text-2xl py-1 px-4 rounded-xl ${box.box_full ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} to={`/jobs/${jobId}/${boxId}/add-item`}>Add Item</Link>
+                <div className="my-2">
+                    <Link className={`md:text-xl lg:text-2xl py-2 px-4 rounded-xl ${box.box_full ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} to={box.box_full ? "#" : `/jobs/${jobId}/${boxId}/add-item`}>Add Item</Link>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
                     <img src={LampIcon} className="w-11" alt="a picture of a lamp" />
@@ -168,7 +168,7 @@ const BoxDetail = ({ openDeleteModal }) => {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     )
 };
 

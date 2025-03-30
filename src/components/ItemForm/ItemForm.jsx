@@ -102,11 +102,11 @@ const ItemForm = (props) => {
     };
 
     return (
-        <>
-            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
+        <div className="flex flex-col items-center">
+            <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
-            <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg justify-self-center items-center pt-5 mt-5 max-w-3xl md:pb-5">
+            <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg items-center pt-5 mt-5 max-w-3xl md:pb-5">
                 <h1 className="text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2">{props.isEditingItem ? "Edit Item" : "Add Item"}</h1>
                 <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
                     <div>
@@ -145,6 +145,7 @@ const ItemForm = (props) => {
                                 name="is_fragile"
                                 checked={is_fragile}
                                 onChange={handleChange}
+                                className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
                             />
                         </div>
                         <div className="flex flex-row items-center gap-4 w-[50%]">
@@ -155,6 +156,7 @@ const ItemForm = (props) => {
                                 name="is_heavy"
                                 checked={is_heavy}
                                 onChange={handleChange}
+                                className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
                             />
                         </div>
                     </div>
@@ -178,11 +180,11 @@ const ItemForm = (props) => {
                         </select>
                     </div>
 
-                    <button className={`flex justify-self-center px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? "Edit Item" : "Create Item"}</button>
-                    <p className="text-red-500 justify-self-center mt-1">{message}</p>
+                    <button className={`flex mx-auto px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? "Edit Item" : "Create Item"}</button>
+                    <p className="text-red-500 text-center mt-1">{message}</p>
                 </form>
             </div>
-        </>
+        </div>
     )
 };
 

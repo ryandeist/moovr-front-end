@@ -45,7 +45,7 @@ const ItemDetail = ({ openDeleteModal }) => {
     };
 
     return (
-        <>
+        <div className="flex flex-col items-center">
             <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center">
                 <Breadcrumb />
             </div>
@@ -73,7 +73,7 @@ const ItemDetail = ({ openDeleteModal }) => {
                     <p>{item.description}</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 

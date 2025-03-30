@@ -45,14 +45,14 @@ const JobList = ({ openDeleteModal }) => {
 
     //return
     return (
-        <div className="flex flex-col md:text-xl lg:text-2xl bg-white w-[90%] border-2 border-gray-950 max-w-3xl my-5 justify-self-center h-auto p-2 gap-3 shadow-lg rounded-lg">
-            <div className="flex flex-row justify-start">
-                <Link to="/jobs/add-job"><h1 className="flex justify-self-start md:text-xl lg:text-2xl py-1 px-4 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-white">Add Job</h1></Link>
+        <div className="flex flex-col md:text-xl lg:text-2xl bg-white w-[90%] border-2 border-gray-950 max-w-3xl my-5 mx-auto h-auto p-2 gap-3 shadow-lg rounded-lg">
+            <div className="flex flex-row">
+                <Link to="/jobs/add-job"><h1 className="flex md:text-xl lg:text-2xl py-1 px-4 rounded-xl bg-yellow-700 hover:bg-yellow-600 text-white">Add Job</h1></Link>
             </div>
             <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
                 <h1 className="text-2xl font-bold lg:text-4xl">Your Jobs</h1>
             </div>
-            <div className="flex flex-col w-[100%] max-w-3xl justify-self-center gap-y-3">
+            <div className="flex flex-col w-[100%] max-w-3xl gap-y-3">
                 {jobs.length === 0 ? (
                     <div className="flex p-2 w-[90%] max-w-3xl mx-auto">
                         <p className="mx-auto font-semibold">This box is empty. Add an item to this box.</p>

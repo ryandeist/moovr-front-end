@@ -71,11 +71,11 @@ const JobDetail = ({ openDeleteModal }) => {
 
     // return
     return (
-        <>
-            <div className="flex w-[90%] max-w-3xl mt-5 justify-self-center ">
+        <div className="flex flex-col w-[90%] max-w-3xl my-5 mx-auto h-auto p-2">
+            <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
-            <div className="flex bg-white w-[90%] md:text-xl lg:text-2xl border-2 border-gray-950 max-w-3xl mt-5 justify-self-center flex-col p-2 gap-3 shadow-lg rounded-lg">
+            <div className="flex bg-white w-[90%] md:text-xl lg:text-2xl border-2 border-gray-950 max-w-3xl mt-5 flex-col p-2 gap-3 shadow-lg rounded-lg">
                 <div className="flex flex-row justify-between">
                     <div>
                         <div className="flex flex-row gap-1">
@@ -104,9 +104,9 @@ const JobDetail = ({ openDeleteModal }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex flex-col w-[90%] max-w-3xl justify-self-center bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
-                <div className="flex-row justify-start">
-                    <Link className="flex justify-self-start md:text-xl lg:text-2xl bg-yellow-700 hover:bg-yellow-600 text-white py-1 px-4 rounded-xl" to={`/jobs/${job.id}/add-box`}>Add Box</Link>
+            <div className="flex flex-col w-[90%] max-w-3xl bg-white border-2 border-gray-950 my-5 p-2 gap-1 shadow-lg rounded-lg">
+                <div className="mt-2">
+                    <Link className="md:text-xl lg:text-2xl bg-yellow-700 hover:bg-yellow-600 text-white py-2 px-4 rounded-xl" to={`/jobs/${job.id}/add-box`}>Add Box</Link>
                 </div>
                 <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
                     <img src={BoxIcon} className="w-11" alt="a picture of a box" />
@@ -121,20 +121,20 @@ const JobDetail = ({ openDeleteModal }) => {
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2 mx-auto w-[100%]">
                         {boxes.map((box) => (
                             <Link to={`/jobs/${job.id}/${box.id}`} key={box.id}><div className="flex flex-col box-content w-[100%] aspect-square bg-yellow-700 hover:bg-yellow-600 rounded-xl items-center">
-                                <div className="my-auto gap-1 md:gap-2 flex flex-col w-[90%] items-center" >
+                                <div className="my-auto gap-6 md:gap-2 flex flex-col w-[90%] items-center" >
                                     <div>
                                         <h1 className="text-center text-white text-2xl font-semibold"> Box #{box.id}</h1>
                                         <p className="text-center text-white">{box.box_name}</p>
                                         <p className="text-center text-white">Size: {box.size_display}</p>
                                     </div>
                                     {box.box_full || box.is_heavy || box.is_fragile ? (
-                                        <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] justify-between border-2 border-gray-950 rounded-xl py-1 px-2">
+                                        <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] border-2 border-gray-950 rounded-xl py-1 px-2">
                                             {box.is_heavy && <img className="w-[33%] mx-auto" src={HeavyIcon} alt="an icon of person lifting a heavy box" />}
                                             {box.is_fragile && <img className="w-[33%] mx-auto" src={FragileIcon} alt="a fragile item icon" />}
                                             {box.box_full && <p className="text-red-600 text-center font-semibold text-sm md:text-base lg:text-lg my-auto mx-auto w-[33%]">Full!</p>}
                                         </div>
                                     ) : (
-                                        <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] justify-between border-2 border-gray-950 rounded-xl py-1 px-2">
+                                        <div className="bg-white flex w-[80%] md:w-[90%] lg:w-[100%] border-2 border-gray-950 rounded-xl py-1 px-2">
                                             <p className="text-center font-semibold text-sm md:text-base lg:text-lg my-auto w-[100%]">No Labels</p>
                                         </div>
                                     )}
@@ -144,7 +144,7 @@ const JobDetail = ({ openDeleteModal }) => {
                     </div>
                 )}
             </div>
-        </>
+        </div>
     )
 };
 
