@@ -2,6 +2,8 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../contexts/UserContext";
+
+// service function imports
 import { logIn } from "../../services/authService.js";
 
 // component

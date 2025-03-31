@@ -1,9 +1,14 @@
 // imports 
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
+
+// service function imports
 import { createBox, getOneBox, updateBox } from "../../services/boxService.js";
+
+// component imports
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
+// component
 const BoxForm = (props) => {
     // hooks
     const navigate = useNavigate();
@@ -61,13 +66,14 @@ const BoxForm = (props) => {
         };
     };
 
-    // returns
     const isFormValid = () => {
         return !(
-            box_name
+            box_name &&
+            box_description
         );
     };
     
+    // returns
     return (
         <div className="flex flex-col w-[100%] rounded-lg items-center">
             <div className="flex w-[90%] max-w-3xl mt-5">

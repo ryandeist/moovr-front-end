@@ -1,10 +1,14 @@
 // imports
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { createJob, editJob, getOneJob } from "../../services/jobService.js";
 import DatePicker from "react-datepicker";
 import { format, parseISO } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+
+// service function imports
+import { createJob, editJob, getOneJob } from "../../services/jobService.js";
+
+// component imports
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 // components

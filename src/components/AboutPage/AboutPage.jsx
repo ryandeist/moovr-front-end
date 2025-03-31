@@ -1,6 +1,6 @@
 // imports
-import { Link } from 'react-router'
-import CowIcon from '/images/cow-logo-cropped.png'
+import CowIcon from "/images/cow-logo-cropped.png";
+
 // component
 const AboutPage = () => {
     // return
