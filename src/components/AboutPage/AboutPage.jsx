@@ -13,8 +13,8 @@ const AboutPage = () => {
             <p className='font-semibold border-b-2 border-gray-500 text-center w-[90%] p-4'>Moovr, we'll see you there.</p>
             <p className='text-center my-5 px-3'>This application was built using React, JavaScript, Tailwind, Django, Python and PostgreSQL. Check out the code using the links below.</p>
             <div className="flex flex-row gap-5">
-                <a className="flex mx-auto my-4 px-5 py-2 rounded-full bg-yellow-700 hover:bg-yellow-600 text-white" href="https://github.com/ryandeist/moovr-front-end">Front-End Repo</a>
-                <a className="flex mx-auto my-4 px-5 py-2 rounded-full bg-yellow-700 hover:bg-yellow-600 text-white" href="https://github.com/ryandeist/moovr-back-end">Back-End Repo</a>
+                <a className="flex mx-auto my-4 px-5 py-2 rounded-full bg-yellow-700 hover:bg-yellow-600 text-white" href="https://github.com/ryandeist/moovr-front-end" target="_blank">Front-End Repo</a>
+                <a className="flex mx-auto my-4 px-5 py-2 rounded-full bg-yellow-700 hover:bg-yellow-600 text-white" href="https://github.com/ryandeist/moovr-back-end" target="_blank">Back-End Repo</a>
             </div>
         </div>
     )
