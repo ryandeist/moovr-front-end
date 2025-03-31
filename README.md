@@ -21,10 +21,10 @@ This project provided an opportunity to build a custom Django API and integrate 
 
 [**Deployed App**](https://moovr.netlify.app/)
 
-[**Back-End Repo**](https://github.com/adampaley/mern-media-match-back-end)
+[**Back-End Repo**](https://github.com/ryandeist/moovr-back-end)
 
 ## Planning Materials:
-- [Trello Board](https://trello.com/b/a6q0CveD/mediamatch)
+- [Trello Board](https://trello.com/b/k7vTehLW/moover)
 
 ## Attributions:
 ### Assets
