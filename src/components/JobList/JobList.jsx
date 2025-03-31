@@ -1,14 +1,21 @@
 // imports
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
-import { getJobs, deleteJob } from "../../services/jobService.js";
 import { parseISO, isValid } from "date-fns";
+
+// service function imports
+import { getJobs, deleteJob } from "../../services/jobService.js";
+
+// component imports
+import LoadingComponent from "../LoadingComponent/LoadingComponent.jsx";
+
+// icon imports
 import Delete from "/images/delete-icon.png";
 
 // component
 const JobList = ({ openDeleteModal }) => {
     // state
-    const [jobs, setJobs] = useState([]);
+    const [jobs, setJobs] = useState(null);
 
     // fetch user job list
     useEffect(() => {
@@ -68,6 +75,7 @@ const JobList = ({ openDeleteModal }) => {
             <div className="flex flex-row justify-center items-center gap-1 mb-1 pb-2 border-b-2 border-b-gray-400">
                 <h1 className="text-2xl font-bold lg:text-4xl">Your Jobs</h1>
             </div>
+            {jobs === null ? <LoadingComponent /> :
             <div className="flex flex-col w-[100%] max-w-3xl gap-y-3">
                 {jobs.length === 0 ? (
                     <div className="flex p-2 w-[90%] max-w-3xl mx-auto">
@@ -107,6 +115,7 @@ const JobList = ({ openDeleteModal }) => {
                     </div>
                 )}
             </div>
+        }
         </div>
     )
 };

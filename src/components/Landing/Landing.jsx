@@ -1,8 +1,12 @@
 // imports
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+
+// component imports
 import LoginForm from "../LoginForm/LoginForm";
 import LinkBoxes from "../LinkBoxes/LinkBoxes";
+
+// icon imports
 import CowLogo from "/images/cow-logo.png";
 
 // component

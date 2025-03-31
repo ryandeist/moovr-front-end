@@ -1,10 +1,13 @@
-//
+// imports
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router";
+
+// service function imports
 import { getOneJob } from "../../services/jobService.js";
 import { getOneBox } from "../../services/boxService.js";
 import { getOneItemInBox } from "../../services/itemService.js";
 
+// component
 const Breadcrumb = () => {
     // hooks
     const location = useLocation();

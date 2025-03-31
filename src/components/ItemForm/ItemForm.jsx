@@ -1,10 +1,14 @@
 // imports
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
+
+// service function imports
 import { createItem, editItem, getOneItemInBox } from "../../services/itemService.js";
 import { getBoxes } from "../../services/boxService.js";
-import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
+// component imports
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
+import LoadingComponent from "../LoadingComponent/LoadingComponent.jsx";
 
 // components
 const ItemForm = (props) => {
@@ -97,92 +101,92 @@ const ItemForm = (props) => {
     };
 
     // returns
-    if (!defaultBox) {
-        return <h1>Loading...</h1>
-    };
-
     return (
         <div className="flex flex-col items-center">
             <div className="flex w-[90%] max-w-3xl mt-5">
                 <Breadcrumb />
             </div>
             <div className="flex flex-col border-2 border-gray-950 bg-white w-[90%] shadow-lg h-auto rounded-lg items-center pt-5 mt-5 max-w-3xl md:pb-5">
-                <h1 className="text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2">{props.isEditingItem ? "Edit Item" : "Add Item"}</h1>
-                <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
-                    <div>
-                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="name">Item Name: </label>
-                        <input
-                            className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Enter Item Name"
-                            maxLength={50}
-                            type="text"
-                            name="name"
-                            id="name"
-                            value={name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="description">Item Description: </label>
-                        <textarea
-                            className="resize-none shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Enter Item Description"
-                            rows={4}
-                            maxLength={250}
-                            name="description"
-                            id="description"
-                            value={description}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="flex flex-row">
-                        <div className="flex flex-row items-center gap-4 w-[50%]">
-                            <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_fragile">Fragile: </label>
-                            <input
-                                type="checkbox"
-                                id="is_fragile"
-                                name="is_fragile"
-                                checked={is_fragile}
-                                onChange={handleChange}
-                                className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
-                            />
-                        </div>
-                        <div className="flex flex-row items-center gap-4 w-[50%]">
-                            <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_heavy">Heavy: </label>
-                            <input
-                                type="checkbox"
-                                id="is_heavy"
-                                name="is_heavy"
-                                checked={is_heavy}
-                                onChange={handleChange}
-                                className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="box">Box: </label>
-                        <select
-                            className="shadow border rounded w-full py-2 px-3 mb-1 text-gray-700 focus:outline-none focus:shadow-outline"
-                            name="box"
-                            id="box"
-                            onChange={handleChange}
-                            value={box}
-                        >
-                            {defaultBox && (
-                                <option value={defaultBox.id}>{defaultBox.box_name}</option>
-                            )}
-                            {boxes.map((box) => (
-                                <option key={box.id} value={box.id}>
-                                    {box.box_name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                {!defaultBox ? <LoadingComponent /> :
+                    <>
+                        <h1 className="text-3xl md:text-4xl font-bold border-b-2 border-gray-400 w-[80%] text-center pb-2">{props.isEditingItem ? "Edit Item" : "Add Item"}</h1>
+                        <form className="mt-4 w-[80%] md:text-lg" autoComplete="off" onSubmit={handleSubmit}>
+                            <div>
+                                <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="name">Item Name: </label>
+                                <input
+                                    className="shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="Enter Item Name"
+                                    maxLength={50}
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={name}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="description">Item Description: </label>
+                                <textarea
+                                    className="resize-none shadow appearance-none border rounded w-full py-2 px-3 mb-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    placeholder="Enter Item Description"
+                                    rows={4}
+                                    maxLength={250}
+                                    name="description"
+                                    id="description"
+                                    value={description}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex flex-row">
+                                <div className="flex flex-row items-center gap-4 w-[50%]">
+                                    <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_fragile">Fragile: </label>
+                                    <input
+                                        type="checkbox"
+                                        id="is_fragile"
+                                        name="is_fragile"
+                                        checked={is_fragile}
+                                        onChange={handleChange}
+                                        className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
+                                    />
+                                </div>
+                                <div className="flex flex-row items-center gap-4 w-[50%]">
+                                    <label className="block text-gray-700 text-l font-bold my-auto" htmlFor="is_heavy">Heavy: </label>
+                                    <input
+                                        type="checkbox"
+                                        id="is_heavy"
+                                        name="is_heavy"
+                                        checked={is_heavy}
+                                        onChange={handleChange}
+                                        className="w-5 h-5 cursor-pointer border-2 border-gray-300 rounded-md checked:bg-red-600 checked:border-red-600 focus:ring-2 focus:ring-red-yellow-600"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="block text-gray-700 text-l font-bold mb-2" htmlFor="box">Box: </label>
+                                <select
+                                    className="shadow border rounded w-full py-2 px-3 mb-1 text-gray-700 focus:outline-none focus:shadow-outline"
+                                    name="box"
+                                    id="box"
+                                    onChange={handleChange}
+                                    value={box}
+                                >
+                                    {defaultBox && (
+                                        <option value={defaultBox.id}>{defaultBox.box_name}</option>
+                                    )}
+                                    {boxes.map((box) => (
+                                        <option key={box.id} value={box.id}>
+                                            {box.box_name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
 
-                    <button className={`flex mx-auto px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? "Edit Item" : "Create Item"}</button>
-                    <p className="text-red-500 text-center mt-1">{message}</p>
-                </form>
+                            <button className={`flex mx-auto px-5 py-2 my-4 rounded-full transition-colors ${isFormValid() ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-700 hover:bg-yellow-600 text-white"}`} disabled={isFormValid()}>{props.isEditingItem ? "Edit Item" : "Create Item"}</button>
+                            <p className="text-red-500 text-center mt-1">{message}</p>
+                        </form>
+                    </>
+                }
             </div>
         </div>
     )

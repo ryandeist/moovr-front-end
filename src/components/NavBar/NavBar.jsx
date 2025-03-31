@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { Link } from "react-router";
 import { UserContext } from "../../contexts/UserContext";
 import { Menu, X } from "lucide-react"
+
+// icon imports
 import Logo from "/images/cow-logo.png"
 
 // component
