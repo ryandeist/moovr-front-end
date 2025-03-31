@@ -30,13 +30,13 @@ const NavBar = () => {
     const navLinks = user
         ? [
             { name: "Home", to: "/" },
-            { name: "About", to: "/" },
+            { name: "About", to: "/about" },
             { name: "All Jobs", to: "/jobs" },
             { name: "New Job", to: "/jobs/add-job" },
             { name: "Log Out", to: "/", onClick: handleLogOut, buttonStyle: true },
         ] : [
             { name: "Home", to: "/" },
-            { name: "About", to: "/" },
+            { name: "About", to: "/about" },
             { name: "Sign Up", to: "/signup", onClick: clearTokenForSignUp, buttonStyle: true },
         ];
 
