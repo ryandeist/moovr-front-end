@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router";
-import JobList from "./components/JobList/JobList";
-import Landing from "./components/Landing/Landing";
-import NavBar from "./components/NavBar/NavBar";
-import SignUpForm from "./components/SignUpForm/SignUpForm";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
-import JobDetail from "./components/JobDetail/JobDetail";
-import JobForm from "./components/JobForm/JobForm";
+import AboutPage from "./components/AboutPage/AboutPage";
 import BoxDetail from "./components/BoxDetail/BoxDetail";
 import BoxForm from "./components/BoxForm/BoxForm";
+import DeleteWarning from "./components/DeleteWarning/DeleteWarning";
 import ItemDetail from "./components/ItemDetail/ItemDetail";
 import ItemForm from "./components/ItemForm/ItemForm";
-import DeleteWarning from "./components/DeleteWarning/DeleteWarning";
+import JobList from "./components/JobList/JobList";
+import JobDetail from "./components/JobDetail/JobDetail";
+import JobForm from "./components/JobForm/JobForm";
+import Landing from "./components/Landing/Landing";
+import NavBar from "./components/NavBar/NavBar";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
 
 const App = () => {
   // state
@@ -38,6 +39,7 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/jobs" element={<ProtectedRoute><JobList openDeleteModal={openDeleteModal} /></ProtectedRoute>} />
         <Route path="/jobs/:jobId" element={<ProtectedRoute><JobDetail openDeleteModal={openDeleteModal} /></ProtectedRoute>} />
         <Route path="/jobs/add-job" element={<ProtectedRoute><JobForm /></ProtectedRoute>} />
