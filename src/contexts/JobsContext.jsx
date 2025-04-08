@@ -1,8 +1,9 @@
 // imports
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { parseISO, isValid } from "date-fns";
 import { getJobs, deleteJob } from "../services/jobService.js";
 import { useNavigate } from "react-router";
+import { UserContext } from "./UserContext.jsx";
 
 // hooks
 const JobsContext = createContext();
@@ -10,6 +11,7 @@ const JobsContext = createContext();
 // context
 const JobsProvider = ({ children }) => {
     const navigate = useNavigate();
+    const { user } = useContext(UserContext);
 
     const [jobs, setJobs] = useState([]);
     const [refresh, setRefresh] = useState(false);
@@ -46,8 +48,10 @@ const JobsProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        fetchJobs();
-    }, [refresh]);
+        if (user) {
+            fetchJobs();
+        }
+    }, [refresh, user]);
 
     console.log("JobsContext", jobs);
 
