@@ -1,17 +1,18 @@
 // imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useLocation, useParams } from "react-router";
 
 // service function imports
-import { getOneJob } from "../../services/jobService.js";
 import { getOneBox } from "../../services/boxService.js";
 import { getOneItemInBox } from "../../services/itemService.js";
+import { JobsContext } from "../../contexts/JobsContext.jsx";
 
 // component
 const Breadcrumb = () => {
     // hooks
     const location = useLocation();
     const { jobId, boxId, itemId } = useParams();
+    const { jobs } = useContext(JobsContext);
 
     // state
     const [jobName, setJobName] = useState(null);
@@ -21,7 +22,7 @@ const Breadcrumb = () => {
     useEffect(() => {
         if (jobId) {
             const fetchJob = async () => {
-                const job = await getOneJob(jobId);
+                const job = (jobs ? jobs.find((job) => job.id === Number(jobId)) : null);
                 setJobName(job.customer_name);
             }
             fetchJob();
@@ -42,7 +43,7 @@ const Breadcrumb = () => {
             }
             fetchItem();
         }
-    }, [jobId, boxId, itemId]);
+    }, [jobId, boxId, itemId, jobs]);
 
     // const variables
     const pathnames = location.pathname.split("/").filter((pathItem) => pathItem);

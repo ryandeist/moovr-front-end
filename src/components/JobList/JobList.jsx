@@ -1,13 +1,11 @@
 // imports
-import { useState, useEffect } from "react";
+import { useContext } from "react";
 import { Link } from "react-router";
 import { parseISO, isValid } from "date-fns";
 
-// service function imports
-import { getJobs, deleteJob } from "../../services/jobService.js";
-
 // component imports
 import LoadingComponent from "../LoadingComponent/LoadingComponent.jsx";
+import { JobsContext } from "../../contexts/JobsContext.jsx";
 
 // icon imports
 import Delete from "/images/delete-icon.png";
@@ -15,31 +13,7 @@ import Delete from "/images/delete-icon.png";
 // component
 const JobList = ({ openDeleteModal }) => {
     // state
-    const [jobs, setJobs] = useState(null);
-
-    // fetch user job list
-    useEffect(() => {
-        const fetchJobs = async () => {
-            try {
-                const jobs = await getJobs();
-                const sortedJobs = jobs
-                    .map((job) => {
-                        const dateString = typeof job.date === "string" ? job.date : null;
-                        const parsedDate = dateString ? parseISO(dateString) : null;
-
-                        return {
-                            ...job,
-                            date: parsedDate && isValid(parsedDate) ? parsedDate : null
-                        };
-                    })
-                    .sort((a, b) => a.date - b.date); // Sort by date
-                setJobs(sortedJobs);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchJobs();
-    }, []);
+    const { jobs, handleDelete } = useContext(JobsContext);
 
     // Function to format date as MM/DD/YY
     const formatDate = (dateInput) => {
@@ -54,16 +28,6 @@ const JobList = ({ openDeleteModal }) => {
                 year: "2-digit"
             })
             : "Invalid Date";
-    };
-
-    // handle delete
-    const handleDelete = async (jobId) => {
-        try {
-            deleteJob(jobId);
-            setJobs((prevJobs) => prevJobs.filter((job) => job.id !== jobId));
-        } catch (err) {
-            console.log(err);
-        };
     };
 
     //return
