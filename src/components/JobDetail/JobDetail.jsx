@@ -1,15 +1,15 @@
 // imports
-import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router";
+import { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router";
 import { parseISO, isValid } from "date-fns";
 
 // service function imports
-import { getOneJob, deleteJob } from "../../services/jobService.js";
 import { getBoxes } from "../../services/boxService.js";
 
 // component imports
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import LoadingComponent from "../LoadingComponent/LoadingComponent.jsx";
+import { JobsContext } from "../../contexts/JobsContext.jsx";
 
 // icon imports
 import BoxIcon from "/images/cardboard-box-logo.png";
@@ -20,7 +20,7 @@ import HeavyIcon from "/images/heavy-icon.png";
 const JobDetail = ({ openDeleteModal }) => {
     // hooks
     const { jobId } = useParams();
-    const navigate = useNavigate();
+    const { jobs, handleDelete} = useContext(JobsContext);
 
     // state
     const [job, setJob] = useState(null);
@@ -30,7 +30,7 @@ const JobDetail = ({ openDeleteModal }) => {
     useEffect(() => {
         const fetchJob = async () => {
             try {
-                const fetchedJob = await getOneJob(jobId);
+                const fetchedJob = (jobs ? jobs.find((job) => job.id === Number(jobId)) : null);
                 const fetchedBoxes = await getBoxes(jobId);
 
                 const sortedBoxes = fetchedBoxes.sort((a, b) => a.id - b.id);
@@ -42,17 +42,7 @@ const JobDetail = ({ openDeleteModal }) => {
             }
         }
         fetchJob();
-    }, [jobId]);
-
-    // handler functions
-    const handleDelete = async () => {
-        try {
-            deleteJob(jobId);
-            navigate("/jobs");
-        } catch (err) {
-            console.log(err);
-        };
-    };
+    }, [jobs, jobId]);
 
     // Function to format date as MM/DD/YY
     const formatDate = (dateInput) => {

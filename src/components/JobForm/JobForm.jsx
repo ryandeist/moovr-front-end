@@ -1,12 +1,13 @@
 // imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router";
 import DatePicker from "react-datepicker";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
+import { JobsContext } from "../../contexts/JobsContext.jsx";
 
 // service function imports
-import { createJob, editJob, getOneJob } from "../../services/jobService.js";
+import { createJob, editJob } from "../../services/jobService.js";
 
 // component imports
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
@@ -16,6 +17,9 @@ const JobForm = (props) => {
     // hooks
     const navigate = useNavigate();
     const { jobId } = useParams();
+
+    // context
+    const { jobs, setRefresh } = useContext(JobsContext);
 
     // state variables
     const [formData, setFormData] = useState({
@@ -33,16 +37,16 @@ const JobForm = (props) => {
         if (props.isEditingJob && jobId) {
             const fetchJob = async () => {
                 try {
-                    const job = await getOneJob(jobId);
+                    const job = (jobs ? jobs.find((job) => job.id === Number(jobId)) : null);
 
-                    setFormData({...job, date: job.date ? parseISO(job.date) : null});
+                    setFormData({...job});
                 } catch (err) {
                     console.log(err);
                 }
             };
             fetchJob();
         }
-    }, [jobId, props.isEditingJob]);
+    }, [jobs, jobId, props.isEditingJob]);
 
     // handler functions
     const handleChange = (evt) => {
@@ -68,6 +72,7 @@ const JobForm = (props) => {
         if (props.isEditingJob) {
             try {
                 const editedJob = await editJob(jobId, jobData);
+                setRefresh((prev) => !prev);
                 navigate(`/jobs/${jobId}`);
                 return console.log(editedJob);
             } catch (err) {
@@ -76,6 +81,7 @@ const JobForm = (props) => {
         } else {
             try {
                 const newJob = await createJob(jobData);
+                setRefresh((prev) => !prev);
                 navigate("/jobs");
                 console.log(newJob);
             } catch (err) {
